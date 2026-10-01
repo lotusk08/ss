@@ -1,0 +1,19 @@
+.ss-icon {
+  display: inline-block;
+  flex: none;
+  width: var(--ss-icon-size);
+  height: var(--ss-icon-size);
+  vertical-align: -0.125em;
+}
+
+.ss-icon.line {
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: var(--ss-icon-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ss-icon.solid {
+  fill: currentcolor;
+}

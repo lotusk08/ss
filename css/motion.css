@@ -1,0 +1,205 @@
+@keyframes ss-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ss-reveal-shift));
+  }
+}
+
+@keyframes ss-line {
+  from {
+    transform: translateY(calc(100% + 0.3em));
+  }
+}
+
+@keyframes ss-slide {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+}
+
+@keyframes ss-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.ss-enter > * {
+  --i: 0;
+}
+
+.ss-enter > :nth-child(2),
+.ss-stagger > :nth-child(2) {
+  --i: 1;
+}
+
+.ss-enter > :nth-child(3),
+.ss-stagger > :nth-child(3) {
+  --i: 2;
+}
+
+.ss-enter > :nth-child(4),
+.ss-stagger > :nth-child(4) {
+  --i: 3;
+}
+
+.ss-enter > :nth-child(5),
+.ss-stagger > :nth-child(5) {
+  --i: 4;
+}
+
+.ss-enter > :nth-child(n + 6),
+.ss-stagger > :nth-child(n + 6) {
+  --i: 5;
+}
+
+.ss-slide-content > :nth-child(1) {
+  --step: 1;
+}
+
+.ss-slide-content > :nth-child(2) {
+  --step: 2;
+}
+
+.ss-slide-content > :nth-child(3) {
+  --step: 3;
+}
+
+.ss-slide-content > :nth-child(4) {
+  --step: 4;
+}
+
+.ss-slide-content > :nth-child(5) {
+  --step: 5;
+}
+
+.ss-slide-content > :nth-child(6) {
+  --step: 6;
+}
+
+.ss-slide-content > :nth-child(7) {
+  --step: 7;
+}
+
+.ss-slide-content > :nth-child(8) {
+  --step: 8;
+}
+
+.ss-slide-content > :nth-child(9) {
+  --step: 9;
+}
+
+.ss-slide-content > :nth-child(10) {
+  --step: 10;
+}
+
+.ss-slide-content > :nth-child(n + 11) {
+  --step: 11;
+}
+
+.ss-mask {
+  display: block;
+  clip-path: inset(-0.1em -1em -0.3em -1em);
+}
+
+.ss-mask > * {
+  display: inline-block;
+}
+
+.ss-mask + .ss-mask {
+  --line: 1;
+}
+
+.ss-mask + .ss-mask + .ss-mask {
+  --line: 2;
+}
+
+.ss-progress {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ss-navigated .ss-slide {
+    --step: 0;
+  }
+
+  .ss-navigated .ss-slide,
+  .ss-navigated .ss-slide-content > * {
+    animation: ss-slide 1s backwards;
+    animation-delay: calc(var(--step, 0) * 60ms);
+  }
+
+  .ss-enter > * {
+    animation: ss-reveal var(--ss-reveal-dur) var(--ss-ease-out) both;
+    animation-delay: calc(var(--i, 0) * var(--ss-stagger) + 80ms);
+  }
+
+  .ss-mask > * {
+    animation: ss-line var(--ss-dur-hero) var(--ss-ease-out) both;
+    animation-delay: calc(var(--i, 0) * var(--ss-stagger) + var(--line, 0) * var(--ss-stagger) * 2);
+  }
+
+  @supports (animation-timeline: view()) {
+    .ss-reveal,
+    .ss-stagger > * {
+      animation: ss-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--i, 0) * 4%) entry calc(45% + var(--i, 0) * 4%);
+    }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .ss-progress {
+      position: fixed;
+      z-index: var(--ss-z-toast);
+      inset: 0 0 auto;
+      display: block;
+      height: 2px;
+      background: var(--ss-accent);
+      transform-origin: left;
+      animation: ss-grow linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ss-lift {
+    transition:
+      transform var(--ss-dur-small) var(--ss-ease-out),
+      box-shadow var(--ss-dur-small) var(--ss-ease-out);
+  }
+
+  .ss-lift:hover {
+    box-shadow: var(--ss-shadow-pop);
+    transform: translateY(-2px);
+  }
+
+  .ss-btn.sweep {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .ss-btn.sweep::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: var(--ss-accent);
+    content: '';
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--ss-dur-medium) var(--ss-ease-out);
+  }
+
+  .ss-btn.sweep:hover:not(:disabled) {
+    background: var(--ss-bg-2);
+    color: var(--ss-on-accent);
+  }
+
+  .ss-btn.sweep:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}

@@ -1,0 +1,137 @@
+.highlight,
+.highlight .w,
+.highlight .p,
+.highlight .pi,
+.highlight .ni,
+.highlight .ge,
+.highlight .gs {
+  color: var(--ss-syntax-text);
+}
+
+.highlight .c,
+.highlight .ch,
+.highlight .cd,
+.highlight .cm,
+.highlight .cp,
+.highlight .cpf,
+.highlight .c1,
+.highlight .cs,
+.highlight .gl,
+.highlight .gp,
+.highlight .gt {
+  color: var(--ss-syntax-comment);
+}
+
+.highlight .k,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt,
+.highlight .kv,
+.highlight .nb {
+  color: var(--ss-syntax-keyword);
+}
+
+.highlight .o,
+.highlight .ow {
+  color: var(--ss-syntax-operator);
+}
+
+.highlight .nf,
+.highlight .fm {
+  color: var(--ss-syntax-function);
+}
+
+.highlight .s,
+.highlight .sa,
+.highlight .sb,
+.highlight .sc,
+.highlight .dl,
+.highlight .sd,
+.highlight .s2,
+.highlight .sh,
+.highlight .sx,
+.highlight .s1,
+.highlight .ss {
+  color: var(--ss-syntax-string);
+}
+
+.highlight .l,
+.highlight .ld,
+.highlight .m,
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .il,
+.highlight .mo,
+.highlight .mx {
+  color: var(--ss-syntax-number);
+}
+
+.highlight .kc,
+.highlight .bp {
+  color: var(--ss-syntax-constant);
+}
+
+.highlight .nc,
+.highlight .nn,
+.highlight .no {
+  color: var(--ss-syntax-type);
+}
+
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi,
+.highlight .vm,
+.highlight .nl,
+.highlight .ne,
+.highlight .py {
+  color: var(--ss-syntax-variable);
+}
+
+.highlight .na {
+  color: var(--ss-syntax-attribute);
+}
+
+.highlight .nt {
+  color: var(--ss-syntax-tag);
+}
+
+.highlight .nd {
+  color: var(--ss-syntax-decorator);
+}
+
+.highlight .se,
+.highlight .si {
+  color: var(--ss-syntax-escape);
+}
+
+.highlight .sr {
+  color: var(--ss-syntax-regex);
+}
+
+.highlight .gi {
+  color: var(--ss-syntax-inserted);
+}
+
+.highlight .gd,
+.highlight .err {
+  color: var(--ss-syntax-deleted);
+}
+
+.highlight .gh,
+.highlight .gu {
+  color: var(--ss-syntax-heading);
+  font-weight: bold;
+}
+
+.highlight .ge {
+  font-style: italic;
+}
+
+.highlight .gs {
+  font-weight: bold;
+}

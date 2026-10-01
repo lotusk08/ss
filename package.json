@@ -1,0 +1,62 @@
+{
+  "name": "ss",
+  "version": "1.0.0",
+  "description": "Steve's Style: the colors, type, icons, motion and UI shared by Steve Hoang's products — stevehoang.com, write, Think Why?, Think tree and IO.",
+  "author": "Steve Hoang <hi@stevehoang.com> (https://stevehoang.com)",
+  "homepage": "https://style.stevehoang.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lotusk08/ss.git"
+  },
+  "keywords": [
+    "design-tokens",
+    "palette",
+    "css",
+    "tailwind",
+    "icons",
+    "vietnamese",
+    "dark-mode",
+    "claude-skill"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/palette.js",
+    "./icons": "./src/icons/index.js",
+    "./mode": "./js/mode.js",
+    "./motion": "./js/motion.js",
+    "./art": "./js/art.js",
+    "./css": "./dist/ss.css",
+    "./base.css": "./css/base.css",
+    "./fonts.css": "./css/fonts.css",
+    "./icons.css": "./css/icons.css",
+    "./ui.css": "./css/ui.css",
+    "./syntax.css": "./css/syntax.css",
+    "./layout.css": "./css/layout.css",
+    "./motion.css": "./css/motion.css",
+    "./tailwind.css": "./dist/tailwind.css",
+    "./scss": "./dist/ss.scss",
+    "./tokens.json": "./dist/tokens.json",
+    "./icons/*": "./dist/icons/*",
+    "./grain.png": "./img/grain.png",
+    "./signature.svg": "./img/signature.svg"
+  },
+  "files": [
+    "src",
+    "js",
+    "css",
+    "dist",
+    "fonts",
+    "img",
+    "skills"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node scripts/check.js",
+    "site": "node scripts/site.js",
+    "dev": "node scripts/serve.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
