@@ -27,26 +27,26 @@ work can be loud.
 
 How the philosophy looks on a screen.
 
-1. **Ink on paper.** Grey ink on paper by day, light grey on black by night. The
-   page steps back so the words come forward.
-2. **One bright thing.** One accent per screen, only for what you can act on.
-   Everything else is grey.
+1. **Ink on paper.** Soft ink on a quiet ground, by day and by night.
+2. **One bright thing.** One accent hue for what you can act on; notes and code
+   keep their own colours.
 3. **One button, until it cannot.** One button changes its face for the next
    job. A second comes only when both are needed at once.
 4. **Day and night are two lights.** Blue like a pen by day, ember like a lamp
    by night.
 5. **Sand is the reader's mark.** Selected words turn a faint sand, never the
    accent.
-6. **Titles are written by hand.** Domaine italic for titles; the interface
-   stays plain.
+6. **Titles are written by hand.** Domaine italic for the big title; the rest is
+   sans.
 7. **Vietnamese first.** The fonts carry Vietnamese, and Vietnamese labels are
    never in capitals.
-8. **Fast before fancy.** System fonts first, motion in CSS, no libraries.
+8. **Fast before fancy.** System fonts first, CSS motion first, heavy libraries
+   only on pages that need them.
 9. **Everyone can read it.** Clear contrast, a visible keyboard focus, and
    motion that stops when asked.
-10. **Rhythm, not repetition.** One memorable moment per page, never five.
-11. **Motion says what happened.** Animate only to show a change or where to
-    look.
+10. **Rhythm, not repetition.** A few quiet moments, never a show.
+11. **Motion says what happened.** Motion shows a change; ambient art stays slow
+    and stops when asked.
 
 ## Surfaces
 
