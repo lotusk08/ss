@@ -188,6 +188,25 @@ like the search. From the apps: `.ss-btn` (`.primary`, `.ghost`, `.danger`,
 `.icon`, `.small`), `.ss-field`, `.ss-check`, `.ss-segment`, `.ss-chip`, `.ss-card`,
 `.ss-pop`, `.ss-menu`, `.ss-toast`, `.ss-tip` (tooltip).
 
+One button, many faces (`.ss-swap`, `swap(button)` from `ss/swap`): a
+setting with two or three states is one round button whose face turns to the
+next, as the mode button's sun turns to its moon: `vi` to `en`, list to table.
+Each face is a child with `data-state` and `data-label`; the button says
+`Name: Label` to a screen reader. When the states stop fitting one tap (four or
+more, or ones a reader must compare), use `.ss-segment` or a menu.
+
+```html
+<button class="ss-swap" type="button" data-name="Language" data-value="vi">
+  <span class="on" data-state="vi" data-label="Tiếng Việt">vi</span>
+  <span data-state="en" data-label="English">en</span>
+</button>
+```
+
+```js
+import { swap } from 'ss/swap';
+swap(button, { onChange: (state) => setLanguage(state) });
+```
+
 Markup for each is on [style.stevehoang.com](https://style.stevehoang.com),
 whose source is `site/index.html`.
 

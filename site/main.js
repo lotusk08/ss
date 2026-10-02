@@ -3,6 +3,7 @@ import { scale } from '../src/scale.js';
 import { icon, line, solid } from '../src/icons/index.js';
 import { initMode, onMode, toggleMode } from '../js/mode.js';
 import { backToTop } from '../js/motion.js';
+import { swap } from '../js/swap.js';
 
 const $ = (selector) => document.querySelector(selector);
 const root = document.documentElement;
@@ -174,3 +175,4 @@ initMode();
 live();
 
 backToTop($('#back-to-top'));
+for (const button of document.querySelectorAll('.ss-swap')) swap(button);

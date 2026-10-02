@@ -99,6 +99,10 @@ round mode button (`.ss-mode`, sun and moon), search (`.ss-search`), keys
 (`.ss-pager`), footer (`.ss-footer`),
 buttons, fields, tooltips, menus, toasts. Readers already know them.
 
+One button until it cannot: a setting with two or three states (language,
+view, sound) is one `.ss-swap` whose face turns to the next. Four or more
+states, or ones a reader must compare, become a segment or a menu.
+
 ## Motion
 
 - Curves and times are tokens: `--ss-ease-out` for nearly everything,

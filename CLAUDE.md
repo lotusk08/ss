@@ -56,6 +56,10 @@ Nothing here was invented; each value is one the projects already ship.
   `rotate(70deg) scale(0.55)`), breadcrumb, underlined search, the 3px dot,
   `kbd` with its inset shadow, code block header, back-to-top diamond with its
   160-unit progress square, footer, archive timeline and `hover-fade`.
+- Swap: `.ss-swap` is the mode button made general: the same round 1.75rem
+  button, outline and hover, and the same 0.5s turn (`rotate(70deg)
+  scale(0.55)`) between faces. The first face carries `on` in the markup, so
+  nothing turns on load. Two or three states; past that, a segment or menu.
 - Pager and page switch: `.ss-pager` is `PostNav.vue` and its
   `.post-navigation` rules (the gradient line growing from each edge in
   240ms, the labels, the `#efefef` and `#292929` line, `--ss-btn-line`);

@@ -63,6 +63,7 @@ const MODULES = [
   ['icons', 'src/icons/index.js'],
   ['mode', 'js/mode.js'],
   ['motion', 'js/motion.js'],
+  ['swap', 'js/swap.js'],
   ['art', 'js/art.js']
 ];
 
