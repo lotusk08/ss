@@ -31,14 +31,17 @@ curve SS already names. When unsure, do what stevehoang.com does.
 2. **Type is most of the design.** Get hierarchy, rhythm and spacing right and
    the page looks finished without images.
 3. **One bright thing.** One accent per screen, marking what you can act on.
-4. **Motion tells a story.** Every animation answers what happened, what
+4. **One button, until it cannot.** One control, one job at a time; its face
+   changes with the moment. A second button only when two jobs are needed at
+   once.
+5. **Motion tells a story.** Every animation answers what happened, what
    matters, or where to look. Otherwise cut it.
-5. **Performance is design.** Under three seconds to load, 60fps.
-6. **White space is not empty.** It makes hierarchy and focus.
-7. **Mobile is not a smaller desktop.** Design for the thumb.
-8. **Accessibility enables craft.** Reduced motion is a full experience.
-9. **Sweat the details.** Hover states, loading, 404, favicon, social card.
-10. **Kill your darlings.** If it does not serve the reader, it goes.
+6. **Performance is design.** Under three seconds to load, 60fps.
+7. **White space is not empty.** It makes hierarchy and focus.
+8. **Mobile is not a smaller desktop.** Design for the thumb.
+9. **Accessibility enables craft.** Reduced motion is a full experience.
+10. **Sweat the details.** Hover states, loading, 404, favicon, social card.
+11. **Kill your darlings.** If it does not serve the reader, it goes.
 
 ## Decide before you build
 

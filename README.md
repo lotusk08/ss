@@ -31,23 +31,26 @@ How the philosophy looks on a screen.
    night. The page steps back so the words come forward.
 2. **One bright thing.** A screen has one accent, and it marks what you can act
    on: a link, the main button, the focus ring. Everything else is grey.
-3. **Day and night are two lights.** Blue like a pen on paper by day, ember like
+3. **One button, until it cannot.** A control does one job at a time and changes
+   its face for the next: `vi` to `en`, share to copy to copied. A second button
+   comes only when two jobs are needed at once.
+4. **Day and night are two lights.** Blue like a pen on paper by day, ember like
    a lamp left on by night. Dark mode is warmer, not only darker.
-4. **Sand is the reader's mark.** Selected words turn a faint warm sand, like a
+5. **Sand is the reader's mark.** Selected words turn a faint warm sand, like a
    pencil highlight. It belongs to the reader, so it is never the accent.
-5. **Titles are written by hand.** Domaine Display Narrow italic for titles,
+6. **Titles are written by hand.** Domaine Display Narrow italic for titles,
    Newsreader for emphasis. The interface stays plain: the system face, then
    Inter Display.
-6. **Vietnamese first.** Every face ships a Vietnamese subset, and labels are
+7. **Vietnamese first.** Every face ships a Vietnamese subset, and labels are
    never uppercased in Vietnamese, where capitals crowd the diacritics.
-7. **Fast before fancy.** System fonts first, fonts split by script, motion in
+8. **Fast before fancy.** System fonts first, fonts split by script, motion in
    CSS, no runtime dependencies.
-8. **Everyone can read it.** Text passes WCAG contrast (`npm test` checks it),
+9. **Everyone can read it.** Text passes WCAG contrast (`npm test` checks it),
    focus shows for the keyboard and not the mouse, touch targets are 44px, and
    motion stops for readers who ask it to.
-9. **Rhythm, not repetition.** Small radii, hairlines, low shadows and paper
+10. **Rhythm, not repetition.** Small radii, hairlines, low shadows and paper
    grain instead of gradients. One memorable moment per page, never five.
-10. **Motion says what happened.** Every animation answers what changed or where
+11. **Motion says what happened.** Every animation answers what changed or where
     to look. If it answers neither, it goes.
 
 ## Surfaces
