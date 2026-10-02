@@ -3,7 +3,7 @@ import { scale } from '../src/scale.js';
 import { icon, line, solid } from '../src/icons/index.js';
 import { initMode, onMode, toggleMode } from '../js/mode.js';
 import { backToTop } from '../js/motion.js';
-import { swap } from '../js/swap.js';
+import { dynamic, swap } from '../js/swap.js';
 
 const $ = (selector) => document.querySelector(selector);
 const root = document.documentElement;
@@ -175,4 +175,17 @@ initMode();
 live();
 
 backToTop($('#back-to-top'));
-for (const button of document.querySelectorAll('.ss-swap')) swap(button);
+for (const button of document.querySelectorAll('.ss-swap:not(#dynamic)')) swap(button);
+
+let doneUntil = 0;
+const selected = () => String(window.getSelection() ?? '').trim();
+const done = (text) => {
+  navigator.clipboard?.writeText(text).catch(() => {});
+  doneUntil = Date.now() + 1200;
+  setTimeout(() => helper.update(), 1250);
+};
+const helper = dynamic($('#dynamic'), [
+  { id: 'done', label: 'Copied', icon: icon('check', { set: 'solid' }), when: () => Date.now() < doneUntil },
+  { id: 'copy', label: 'Copy selection', icon: icon('clone', { set: 'solid' }), when: () => selected() !== '', run: () => done(selected()) },
+  { id: 'share', label: 'Copy link', icon: icon('share', { set: 'solid' }), run: () => done(location.href.split('#')[0]) }
+]);

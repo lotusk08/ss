@@ -207,6 +207,24 @@ import { swap } from 'ss/swap';
 swap(button, { onChange: (state) => setLanguage(state) });
 ```
 
+When the job changes with the moment, the same button is dynamic
+(`dynamic(button, features)` from `ss/swap`). Features are listed most urgent
+first; the button shows the first whose `when()` is true, turns to its icon,
+and runs its `run()` on a click. A feature without `run` is a status, drawn in
+the accent. It checks again on selection, scroll, resize and going on or
+offline, and whenever you call `update()`.
+
+```js
+dynamic(button, [
+  { id: 'done', label: 'Copied', icon: check, when: () => justCopied },
+  { id: 'copy', label: 'Copy selection', icon: clone, when: () => hasSelection(), run: copy },
+  { id: 'share', label: 'Copy link', icon: share, run: copyLink }
+]);
+```
+
+One button until it cannot: when two features must be reachable at the same
+time, give the second its own button.
+
 Markup for each is on [style.stevehoang.com](https://style.stevehoang.com),
 whose source is `site/index.html`.
 

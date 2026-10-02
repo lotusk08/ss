@@ -101,7 +101,10 @@ buttons, fields, tooltips, menus, toasts. Readers already know them.
 
 One button until it cannot: a setting with two or three states (language,
 view, sound) is one `.ss-swap` whose face turns to the next. Four or more
-states, or ones a reader must compare, become a segment or a menu.
+states, or ones a reader must compare, become a segment or a menu. When the
+job changes with context (share the page, copy the selection, show it is
+copied), use `dynamic()`: one button showing the most urgent feature. Two
+features needed at once get two buttons.
 
 ## Motion
 

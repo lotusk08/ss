@@ -60,6 +60,10 @@ Nothing here was invented; each value is one the projects already ship.
   button, outline and hover, and the same 0.5s turn (`rotate(70deg)
   scale(0.55)`) between faces. The first face carries `on` in the markup, so
   nothing turns on load. Two or three states; past that, a segment or menu.
+  `dynamic()` drives the same button from context: the first feature whose
+  `when()` holds wins, checked on the next frame after selection, scroll,
+  resize and online changes. It stops `mousedown` so a click keeps the
+  reader's selection.
 - Pager and page switch: `.ss-pager` is `PostNav.vue` and its
   `.post-navigation` rules (the gradient line growing from each edge in
   240ms, the labels, the `#efefef` and `#292929` line, `--ss-btn-line`);

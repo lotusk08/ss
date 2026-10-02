@@ -531,6 +531,11 @@ kbd,
   transform: rotate(0) scale(1);
 }
 
+.ss-swap.status {
+  color: var(--ss-accent);
+  cursor: default;
+}
+
 .ss-code {
   margin: 1rem 0;
   overflow: hidden;
