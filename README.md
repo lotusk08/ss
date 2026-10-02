@@ -27,31 +27,26 @@ work can be loud.
 
 How the philosophy looks on a screen.
 
-1. **Ink on paper.** Soft grey ink on paper by day, light grey on black by
-   night. The page steps back so the words come forward.
-2. **One bright thing.** A screen has one accent, and it marks what you can act
-   on: a link, the main button, the focus ring. Everything else is grey.
-3. **One button, until it cannot.** A control does one job at a time and changes
-   its face for the next: `vi` to `en`, share to copy to copied. A second button
-   comes only when two jobs are needed at once.
-4. **Day and night are two lights.** Blue like a pen on paper by day, ember like
-   a lamp left on by night. Dark mode is warmer, not only darker.
-5. **Sand is the reader's mark.** Selected words turn a faint warm sand, like a
-   pencil highlight. It belongs to the reader, so it is never the accent.
-6. **Titles are written by hand.** Domaine Display Narrow italic for titles,
-   Newsreader for emphasis. The interface stays plain: the system face, then
-   Inter Display.
-7. **Vietnamese first.** Every face ships a Vietnamese subset, and labels are
-   never uppercased in Vietnamese, where capitals crowd the diacritics.
-8. **Fast before fancy.** System fonts first, fonts split by script, motion in
-   CSS, no runtime dependencies.
-9. **Everyone can read it.** Text passes WCAG contrast (`npm test` checks it),
-   focus shows for the keyboard and not the mouse, touch targets are 44px, and
-   motion stops for readers who ask it to.
-10. **Rhythm, not repetition.** Small radii, hairlines, low shadows and paper
-   grain instead of gradients. One memorable moment per page, never five.
-11. **Motion says what happened.** Every animation answers what changed or where
-    to look. If it answers neither, it goes.
+1. **Ink on paper.** Grey ink on paper by day, light grey on black by night. The
+   page steps back so the words come forward.
+2. **One bright thing.** One accent per screen, only for what you can act on.
+   Everything else is grey.
+3. **One button, until it cannot.** One button changes its face for the next
+   job. A second comes only when both are needed at once.
+4. **Day and night are two lights.** Blue like a pen by day, ember like a lamp
+   by night.
+5. **Sand is the reader's mark.** Selected words turn a faint sand, never the
+   accent.
+6. **Titles are written by hand.** Domaine italic for titles; the interface
+   stays plain.
+7. **Vietnamese first.** The fonts carry Vietnamese, and Vietnamese labels are
+   never in capitals.
+8. **Fast before fancy.** System fonts first, motion in CSS, no libraries.
+9. **Everyone can read it.** Clear contrast, a visible keyboard focus, and
+   motion that stops when asked.
+10. **Rhythm, not repetition.** One memorable moment per page, never five.
+11. **Motion says what happened.** Animate only to show a change or where to
+    look.
 
 ## Surfaces
 
