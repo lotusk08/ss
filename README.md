@@ -55,7 +55,7 @@ shared.
 
 | Surface | Ground | Ink | Products | Set with |
 | ------- | ------ | --- | -------- | -------- |
-| **Paper** | `#ffffff` / `#000000` under grain | `#6f6f6f` / `#cecdcd`, titles `#4f4f4f` / `#d7d5d3` | stevehoang.com | `<html data-surface="paper">` |
+| **Paper** | `#ffffff` / `#000000` under grain | `#6d6c6c` / `#b8b8b8`, titles `#4f4f4f` / `#c5c5c5` | stevehoang.com | `<html data-surface="paper">` |
 | **Desk** | `#f7f7f8` / `#0d0d0d` | `#5c5c5e` / `#a3a3a6`, titles `#0d0d0d` / `#f1f1f2` | write, IO | the default |
 
 Paper's values are the blog's own, so a reading product looks like
@@ -136,7 +136,7 @@ the surface.
 | `--ss-accent`, `--ss-accent-2`, `--ss-on-accent` | the one bright thing; links; text on the accent |
 | `--ss-selection`, `--ss-ring` | the sand mark; the soft ring around a focused field |
 | `--ss-tip`, `--ss-info`, `--ss-important`, `--ss-warning`, `--ss-danger` | note rules, each with `-bg` and `-icon` |
-| `--ss-note-text`, `--ss-code-bg`, `--ss-kbd-line`, `--ss-btn-line`, `--ss-stripe` | note text; inline code; keys; post navigation; table and timeline stripes |
+| `--ss-note-text`, `--ss-code-bg`, `--ss-kbd-line`, `--ss-stripe` | note text; inline code; keys; table and timeline stripes |
 | `--ss-title-gradient`, `--ss-outline-fill`, `--ss-outline-stroke` | the gradient title; the outlined card title |
 | `--ss-shadow-card`, `--ss-shadow-pop`, `--ss-tooltip` | depth; the dark tooltip |
 
@@ -173,11 +173,11 @@ Types: `tip`, `info` (the default), `important`, `warning`, `danger`.
 
 ## Components
 
-From the blog: the round mode button (`.ss-mode`, with `.day` and `.night`
-icons inside), the top bar (`.ss-topbar`, `.ss-crumbs`, `.ss-topbar-end`), the
+From the blog: the round mode button (`.ss-mode`, a disc that turns into a
+crescent; `modeIcon()` from `ss/icons` writes its SVG), the top bar (`.ss-topbar`, `.ss-crumbs`, `.ss-topbar-end`), the
 underlined search (`.ss-search`), the dot between them (`.ss-dot`), keys
 (`kbd`), code blocks (`.ss-code`, `.ss-code-head`), the back-to-top diamond
-that counts what you have read (`.ss-top`), previous and next post
+that counts what you have read, its digits rolling (`.ss-top`), previous and next post
 (`.ss-pager`), the footer (`.ss-footer`), the
 archive timeline (`.ss-timeline`) and hover fading (`.ss-fade`).
 
@@ -188,7 +188,7 @@ like the search. From the apps: `.ss-btn` (`.primary`, `.ghost`, `.danger`,
 
 One button, many faces (`.ss-swap`, `swap(button)` from `ss/swap`): a
 setting with two or three states is one round button whose face turns to the
-next, as the mode button's sun turns to its moon: `vi` to `en`, list to table.
+next, as the blog's sun used to turn to its moon: `vi` to `en`, list to table.
 Each face is a child with `data-state` and `data-label`; the button says
 `Name: Label` to a screen reader. When the states stop fitting one tap (four or
 more, or ones a reader must compare), use `.ss-segment` or a menu.
@@ -228,9 +228,9 @@ whose source is `site/index.html`.
 
 ## Icons
 
-- **solid** — 50 Font Awesome Free icons, as the blog, why and think use them.
+- **solid** — 59 Font Awesome Free icons, as the blog, why and think use them.
   For icons beside text.
-- **line** — 67 icons on a 24px grid at 1.6 stroke, from IO and write. For a
+- **line** — 68 icons on a 24px grid at 1.6 stroke, from IO and write. For a
   workspace full of controls.
 
 ```js
@@ -262,8 +262,10 @@ or `?art=fluid` forces one. The signature (`img/signature.svg`,
 `backToTop(button)` drives the diamond. `css/motion.css` adds
 load and scroll reveals, and the blog's page switch: put `ss-navigated` on
 `<html>` after a client-side route change, and `.ss-slide` and the children of
-`.ss-slide-content` rise 10px and fade in over 1s, 60ms apart; curves and times are tokens (`--ss-ease-*`,
-`--ss-dur-*`), and everything stops under reduced motion. `css/layout.css` has
+`.ss-slide-content` rise a third of a line and fade in over 600ms, 60ms
+apart; curves and times are tokens (`--ss-ease-*`, `--ss-dur-*`), every hover
+is one 0.3s motion (`--ss-dur-hover`, `--ss-ease-hover`), and everything that
+moves stops under reduced motion. `css/layout.css` has
 a page grid with full-bleed rooms, a bento grid and section rhythm.
 
 ## Use it
@@ -287,8 +289,18 @@ modeButton.addEventListener('click', toggleMode);
 ```
 
 The page follows the system until the reader picks the other light. The
-choice is `data-mode` on `<html>`, kept for the tab in `sessionStorage` as the
-blog keeps it, and dropped when it matches the system again.
+choice is `data-mode` on `<html>`, kept in `localStorage` as the blog keeps
+it, and dropped when it matches the system or the system's mode changes. A
+switch is instant: `data-switching` holds every transition off for two
+frames.
+
+```js
+import { modeIcon } from 'ss/icons';
+
+modeButton.innerHTML = modeIcon('mode-clip');
+```
+
+Each mode button needs its own clip id.
 
 Also: `ss/tailwind.css` (a Tailwind v4 theme), `ss/scss` (variables and maps,
 including `$ss-paper-light` and `$ss-paper-dark`), `ss` (the palette as

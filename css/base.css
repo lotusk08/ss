@@ -20,7 +20,22 @@ body {
 }
 
 body.ss-grain {
-  background: var(--ss-bg) url('../img/grain.png') repeat 0 0 / 100px 100px;
+  position: relative;
+}
+
+body.ss-grain::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: url('../img/paper-grey.png') 0 0 / 100px 100px;
+  content: '';
+  pointer-events: none;
+}
+
+:root[data-switching] :not(path),
+:root[data-switching] ::before,
+:root[data-switching] ::after {
+  transition: none !important;
 }
 
 button,
@@ -44,11 +59,20 @@ a {
   color: var(--ss-accent-2);
   text-decoration-color: var(--ss-ui-2);
   text-underline-offset: 0.2em;
-  transition: color var(--ss-dur-micro) var(--ss-ease-out);
+  transition:
+    color var(--ss-dur-hover) var(--ss-ease-hover),
+    text-decoration-color var(--ss-dur-hover) var(--ss-ease-hover);
 }
 
-a:hover {
+@media (hover: hover) {
+  a:hover {
+    color: var(--ss-accent);
+  }
+}
+
+a:active {
   color: var(--ss-accent);
+  transition-duration: 0s;
 }
 
 em {
@@ -56,6 +80,10 @@ em {
   font-style: italic;
   font-weight: 400;
   font-size: 1.15em;
+}
+
+:is(h1, h2, h3, h4, h5, h6) em :is(strong, b) {
+  font-weight: 500;
 }
 
 code,
@@ -130,8 +158,8 @@ img {
 
   position: relative;
   margin: 1rem 0;
-  padding: 0.75rem 1.25rem 0.75rem 1rem;
-  border-left: 0.2rem solid var(--note);
+  padding: 0.8em 1.2em 0.8em 0.8em;
+  border-left: 0.2em solid var(--note);
   border-radius: 0;
   background: var(--note-bg);
   color: var(--ss-note-text);
@@ -141,12 +169,6 @@ img {
 
 .ss-note > p {
   line-height: inherit;
-}
-
-@media (max-width: 576px) {
-  .ss-note {
-    margin-inline: calc(var(--ss-note-bleed, 1rem) * -1);
-  }
 }
 
 .ss-note > :first-child {
@@ -163,8 +185,8 @@ img {
 
 .ss-note-icon {
   position: absolute;
-  right: 0.75rem;
-  bottom: 1rem;
+  right: 0.75em;
+  bottom: 1em;
   display: block;
   width: 1em;
   height: 1em;
@@ -368,17 +390,19 @@ img {
 }
 
 .ss-fade > * {
-  transition: opacity 0.2s ease;
+  transition:
+    opacity var(--ss-dur-hover) var(--ss-ease-hover),
+    color var(--ss-dur-hover) var(--ss-ease-hover);
 }
 
 @media (hover: hover) {
   .ss-fade:hover > * {
-    opacity: 0.4;
+    opacity: 0.3;
   }
 
   .ss-fade > :hover {
     opacity: 1;
-    transition: none;
+    transition-duration: 0s;
   }
 }
 
@@ -405,7 +429,19 @@ img {
 
 .ss-art[data-art='fluid'] canvas {
   opacity: 0;
-  transition: opacity 1.6s ease-out;
+}
+
+.ss-art[data-art='fluid'] canvas.soft {
+  width: calc(100% + 2 * var(--cell));
+  height: calc(100% + 2 * var(--cell));
+  margin: calc(-1 * var(--cell));
+  filter: blur(calc(0.75 * var(--cell)));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ss-art[data-art='fluid'] canvas {
+    transition: opacity 1.6s var(--ss-ease-quart);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

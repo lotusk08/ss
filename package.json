@@ -39,7 +39,7 @@
     "./scss": "./dist/ss.scss",
     "./tokens.json": "./dist/tokens.json",
     "./icons/*": "./dist/icons/*",
-    "./grain.png": "./img/grain.png",
+    "./paper-grey.png": "./img/paper-grey.png",
     "./signature.svg": "./img/signature.svg"
   },
   "files": [

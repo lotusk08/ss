@@ -1,5 +1,6 @@
 export const MODE_KEY = 'mode';
 export const MODE_ATTR = 'data-mode';
+export const SWITCH_ATTR = 'data-switching';
 export const THEME_COLOR = { light: '#f7f7f8', dark: '#0d0d0d' };
 
 const isMode = (value) => value === 'light' || value === 'dark';
@@ -9,7 +10,7 @@ const listeners = new Set();
 const store = {
   get() {
     try {
-      const value = sessionStorage.getItem(MODE_KEY);
+      const value = localStorage.getItem(MODE_KEY);
       return isMode(value) ? value : null;
     } catch {
       return null;
@@ -17,8 +18,8 @@ const store = {
   },
   set(value) {
     try {
-      if (value === null) sessionStorage.removeItem(MODE_KEY);
-      else sessionStorage.setItem(MODE_KEY, value);
+      if (value === null) localStorage.removeItem(MODE_KEY);
+      else localStorage.setItem(MODE_KEY, value);
     } catch {
       return;
     }
@@ -49,11 +50,14 @@ function paint() {
 }
 
 export function setMode(mode) {
+  const root = document.documentElement;
   const next = isMode(mode) && mode !== systemMode() ? mode : null;
-  if (next === null) document.documentElement.removeAttribute(MODE_ATTR);
-  else document.documentElement.setAttribute(MODE_ATTR, next);
+  root.setAttribute(SWITCH_ATTR, '');
+  if (next === null) root.removeAttribute(MODE_ATTR);
+  else root.setAttribute(MODE_ATTR, next);
   store.set(next);
   paint();
+  requestAnimationFrame(() => requestAnimationFrame(() => root.removeAttribute(SWITCH_ATTR)));
   return currentMode();
 }
 
@@ -68,9 +72,6 @@ export function onMode(listener) {
 
 export function initMode() {
   setMode(store.get());
-  media().addEventListener('change', () => {
-    if (pinnedMode() === systemMode()) setMode(null);
-    else paint();
-  });
+  media().addEventListener('change', () => setMode(null));
   return currentMode();
 }

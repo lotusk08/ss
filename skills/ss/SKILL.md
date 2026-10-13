@@ -97,7 +97,8 @@ Answer these in the plan, before any code:
 ## Components
 
 Use the package's, unchanged: notes (`.ss-note` with `noteIcon(type)`), the
-round mode button (`.ss-mode`, sun and moon), search (`.ss-search`), keys
+round mode button (`.ss-mode` with `modeIcon()`, a disc that turns into a
+crescent), search (`.ss-search`), keys
 (`kbd`), code (`.ss-code`), back-to-top (`.ss-top`), previous and next
 (`.ss-pager`), footer (`.ss-footer`),
 buttons, fields, tooltips, menus, toasts. Readers already know them.
@@ -113,13 +114,17 @@ features needed at once get two buttons.
 
 - Curves and times are tokens: `--ss-ease-out` for nearly everything,
   `--ss-ease-in-out` for large moves, `--ss-ease-back` for a small settle;
-  `--ss-dur-*` grows with the size of what moves.
+  `--ss-dur-*` grows with the size of what moves. Every hover is one motion,
+  `--ss-dur-hover` on `--ss-ease-hover`, the same in as out; a press is
+  instant; hover rules sit under `(hover: hover)`.
 - Stagger 50–80ms (`--ss-stagger`). Scroll reveals travel 30px at most, run
   once, 0.6–0.8s.
 - Page switch: `ss-navigated` on `<html>` after a client route change plays
   `.ss-slide` and `.ss-slide-content`, as the blog does.
 - Animate only `transform` and `opacity`. Nothing starts hidden waiting for a
-  script. Everything stops under `prefers-reduced-motion`.
+  script. Everything that moves stops under `prefers-reduced-motion`; fades
+  and colour changes stay.
+- A mode switch is instant: `setMode()` holds transitions off for two frames.
 - Native first: CSS scroll-driven animation and View Transitions. GSAP only
   for a timeline CSS cannot express. No smooth-scroll library. One animation
   library per page at most.

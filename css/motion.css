@@ -14,7 +14,7 @@
 @keyframes ss-slide {
   from {
     opacity: 0;
-    translate: 0 10px;
+    translate: 0 calc(var(--ss-leading) * 1rem / 3);
   }
 }
 
@@ -93,8 +93,48 @@
   --step: 10;
 }
 
-.ss-slide-content > :nth-child(n + 11) {
+.ss-slide-content > :nth-child(11) {
   --step: 11;
+}
+
+.ss-slide-content > :nth-child(12) {
+  --step: 12;
+}
+
+.ss-slide-content > :nth-child(13) {
+  --step: 13;
+}
+
+.ss-slide-content > :nth-child(14) {
+  --step: 14;
+}
+
+.ss-slide-content > :nth-child(15) {
+  --step: 15;
+}
+
+.ss-slide-content > :nth-child(16) {
+  --step: 16;
+}
+
+.ss-slide-content > :nth-child(17) {
+  --step: 17;
+}
+
+.ss-slide-content > :nth-child(18) {
+  --step: 18;
+}
+
+.ss-slide-content > :nth-child(19) {
+  --step: 19;
+}
+
+.ss-slide-content > :nth-child(20) {
+  --step: 20;
+}
+
+.ss-slide-content > :nth-child(n + 21) {
+  --step: 20;
 }
 
 .ss-mask {
@@ -125,7 +165,7 @@
 
   .ss-navigated .ss-slide,
   .ss-navigated .ss-slide-content > * {
-    animation: ss-slide 1s backwards;
+    animation: ss-slide 600ms ease backwards;
     animation-delay: calc(var(--step, 0) * 60ms);
   }
 

@@ -131,7 +131,6 @@
   --color-code-bg: var(--ss-code-bg);
   --color-icon: var(--ss-icon);
   --color-kbd-line: var(--ss-kbd-line);
-  --color-btn-line: var(--ss-btn-line);
   --color-syntax-text: var(--ss-syntax-text);
   --color-syntax-comment: var(--ss-syntax-comment);
   --color-syntax-keyword: var(--ss-syntax-keyword);
@@ -165,7 +164,9 @@
   --ease-out: var(--ss-ease-out);
   --ease-in-out: var(--ss-ease-in-out);
   --ease-in: var(--ss-ease-in);
-  --ease-swap: var(--ss-ease-swap);
+  --ease-hover: var(--ss-ease-hover);
+  --ease-quart: var(--ss-ease-quart);
+  --ease-spring: var(--ss-ease-spring);
   --ease-back: var(--ss-ease-back);
   --ease-expo: var(--ss-ease-expo);
   --shadow-card: var(--ss-shadow-card);

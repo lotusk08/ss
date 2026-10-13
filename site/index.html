@@ -35,7 +35,7 @@
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
 <link rel="alternate" type="application/json" href="/tokens.json" title="Design tokens">
 <!--preload-->
-<script>try{var m=sessionStorage.getItem('mode');if(m==='light'||m==='dark')document.documentElement.setAttribute('data-mode',m);var s=sessionStorage.getItem('surface');if(s==='desk'||s==='paper')document.documentElement.setAttribute('data-surface',s)}catch(e){}</script>
+<script>try{var m=localStorage.getItem('mode');if(m==='light'||m==='dark')document.documentElement.setAttribute('data-mode',m);var s=sessionStorage.getItem('surface');if(s==='desk'||s==='paper')document.documentElement.setAttribute('data-surface',s)}catch(e){}</script>
 <!--css-->
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://stevehoang.com/#person","name":"Steve Hoang","url":"https://stevehoang.com","sameAs":["https://github.com/lotusk08"]},{"@type":"WebSite","@id":"https://style.stevehoang.com/#website","name":"Steve's Style","alternateName":"SS","url":"https://style.stevehoang.com/","description":"The colours, type, icons, notes and motion shared by Steve Hoang's products: stevehoang.com, write, Think Why?, Think tree and IO.","inLanguage":"en","author":{"@id":"https://stevehoang.com/#person"},"publisher":{"@id":"https://stevehoang.com/#person"},"copyrightHolder":{"@id":"https://stevehoang.com/#person"},"copyrightYear":2026,"image":"https://style.stevehoang.com/og.png"},{"@type":"SoftwareSourceCode","name":"ss","description":"Design tokens, icons, components and motion for Steve Hoang's products.","codeRepository":"https://github.com/lotusk08/ss","programmingLanguage":["CSS","JavaScript"],"license":"https://opensource.org/licenses/MIT","author":{"@id":"https://stevehoang.com/#person"},"copyrightHolder":{"@id":"https://stevehoang.com/#person"}}]}</script>
 </head>
@@ -44,7 +44,7 @@
   <header class="ss-topbar">
     <a class="mark" href="#top" aria-label="Steve's Style">SS</a>
     <div class="ss-topbar-end">
-      <button class="ss-mode" id="mode" type="button" aria-label="Switch mode"><!--icon:sun:solid:day--><!--icon:moon:solid:night--></button>
+      <button class="ss-mode" id="mode" type="button" aria-label="Switch mode"><!--mode--></button>
     </div>
   </header>
 
@@ -142,7 +142,7 @@
         <section id="components">
           <h2 class="ss-heading">Components<a class="anchor" href="#components" aria-label="Link to this section"><!--icon:hashtag:solid--></a></h2>
           <div class="parts">
-            <div class="part"><span><b>Mode</b></span><div><button class="ss-mode" type="button" data-mode-button aria-label="Switch mode"><!--icon:sun:solid:day--><!--icon:moon:solid:night--></button></div></div>
+            <div class="part"><span><b>Mode</b></span><div><button class="ss-mode" type="button" data-mode-button aria-label="Switch mode"><!--mode--></button></div></div>
             <div class="part"><span><b>Swap</b></span><div><button class="ss-swap" type="button" data-name="Language" data-value="vi"><span class="on" data-state="vi" data-label="Tiếng Việt">vi</span><span data-state="en" data-label="English">en</span></button><button class="ss-swap" type="button" data-name="View" data-value="list"><span class="on" data-state="list" data-label="List"><!--icon:bullet-list:line--></span><span data-state="table" data-label="Table"><!--icon:table:line--></span></button></div></div>
             <div class="part"><span><b>Dynamic</b></span><div><p class="dynamic-text">Select a few words here.</p><button class="ss-swap" id="dynamic" type="button"></button></div></div>
             <div class="part"><span><b>Search</b></span><div><search class="ss-search"><input type="search" placeholder="search..." aria-label="Search example"><!--icon:search:solid--></search></div></div>

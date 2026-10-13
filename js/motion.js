@@ -37,28 +37,60 @@ export function countWhenSeen(root = document, selector = '[data-count]') {
 }
 
 
-export function backToTop(button) {
+const roll = (el, value) => {
+  const digits = String(value).split('').reverse();
+  while (el.children.length < digits.length) {
+    const place = document.createElement('span');
+    const strip = document.createElement('span');
+    for (let d = 0; d < 10; d++) strip.append(Object.assign(document.createElement('span'), { textContent: String(d) }));
+    place.append(strip);
+    el.prepend(place);
+  }
+  while (el.children.length > digits.length) el.firstElementChild.remove();
+  [...el.children].reverse().forEach((place, i) => place.firstElementChild.style.setProperty('--d', digits[i]));
+};
+
+export function backToTop(button, { after = '.ss-topbar' } = {}) {
   const path = button.querySelector('.ring path');
   const pct = button.querySelector('.pct');
-  let raf = null;
-  let timer = null;
-  const update = (count = true) => {
-    raf = null;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const fraction = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
-    if (path) path.style.strokeDashoffset = `${160 * (1 - fraction)}px`;
-    if (pct) pct.textContent = String(Math.round(fraction * 100));
-    button.classList.toggle('show', window.scrollY > 50);
-    if (!count) return;
+  let max = 0;
+  let top = 0;
+  let tick = null;
+  let fade = null;
+  if (pct) pct.textContent = '';
+  const measure = () => {
+    max = document.documentElement.scrollHeight - window.innerHeight;
+    top = document.querySelector(after)?.offsetHeight ?? 0;
+  };
+  const update = (moving) => {
+    tick = null;
+    const y = window.scrollY;
+    const value = max > 0 ? Math.round(Math.min(Math.max(y / max, 0), 1) * 100) : 0;
+    if (path) path.style.strokeDashoffset = `${160 * (1 - value / 100)}px`;
+    if (pct) roll(pct, value);
+    button.classList.toggle('show', y > top);
+    if (!moving) return;
     button.classList.add('counting');
-    clearTimeout(timer);
-    timer = setTimeout(() => button.classList.remove('counting'), 500);
+    clearTimeout(fade);
+    fade = setTimeout(() => button.classList.remove('counting'), 500);
   };
   const onScroll = () => {
-    raf ??= requestAnimationFrame(() => update());
+    tick ??= setTimeout(update, 100, true);
   };
+  const onResize = () => {
+    measure();
+    update(false);
+  };
+  const observer = new ResizeObserver(onResize);
+  observer.observe(document.body);
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onResize, { passive: true });
   button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: still() ? 'auto' : 'smooth' }));
-  update(false);
-  return () => window.removeEventListener('scroll', onScroll);
+  return () => {
+    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', onResize);
+    observer.disconnect();
+    clearTimeout(tick);
+    clearTimeout(fade);
+  };
 }

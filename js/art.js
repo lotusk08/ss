@@ -101,7 +101,7 @@ function fluid(canvas) {
   const octaves = 4 + Math.floor(random() * 4);
   const recipe = {
     speed: between(0.05, 0.14),
-    amplitude: between(0.35, 0.7),
+    amplitude: between(0.3, 0.45),
     freqX: between(1.5, 4),
     freqY: between(1.5, 4),
     phaseX: Array.from({ length: octaves + 1 }, () => random() * Math.PI * 2),
@@ -125,10 +125,13 @@ function fluid(canvas) {
 
   const fit = () => {
     const { clientWidth: width, clientHeight: height } = canvas.parentElement;
-    w = width >= height ? 224 : 168;
+    w = width >= height ? 224 : 112;
     h = Math.max(2, Math.round((w * height) / Math.max(1, width)));
     canvas.width = w;
     canvas.height = h;
+    const cell = width / w;
+    canvas.style.setProperty('--cell', `${cell}px`);
+    canvas.classList.toggle('soft', cell >= 4);
     ctx = canvas.getContext('2d');
     image = ctx.createImageData(w, h);
     for (let i = 0; i < image.data.length; i += 4) image.data[i] = image.data[i + 1] = image.data[i + 2] = 126;

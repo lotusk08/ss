@@ -156,10 +156,13 @@ $ss-radius-full: 9999px;
 $ss-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 $ss-ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
 $ss-ease-in: cubic-bezier(0.55, 0, 1, 0.45);
-$ss-ease-swap: cubic-bezier(0.25, 0.4, 0.75, 0.6);
+$ss-ease-hover: cubic-bezier(0.645, 0.045, 0.355, 1);
+$ss-ease-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+$ss-ease-spring: cubic-bezier(0, 0, 0.15, 1.25);
 $ss-ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 $ss-ease-expo: cubic-bezier(0.87, 0, 0.13, 1);
 $ss-dur-micro: 150ms;
+$ss-dur-hover: 300ms;
 $ss-dur-small: 250ms;
 $ss-dur-medium: 400ms;
 $ss-dur-large: 600ms;
@@ -221,7 +224,6 @@ $ss-light: (
   'code-bg': rgb(25 25 28 / 5%),
   'icon': #8a8a8e,
   'kbd-line': #d5d5d9,
-  'btn-line': #f1f1f2,
   'title-gradient': (linear-gradient(to bottom right, #0d0d0d 30%, rgb(13 13 13 / 30%))),
   'syntax-text': #5c6773,
   'syntax-comment': #828c99,
@@ -279,12 +281,11 @@ $ss-dark: (
   'danger-icon': #cd0202,
   'note-text': #a3a3a6,
   'outline-fill': rgb(255 255 255 / 29%),
-  'outline-stroke': #cccccc,
+  'outline-stroke': #cecdcd,
   'stripe': rgb(213 205 192 / 10%),
   'code-bg': rgb(255 255 255 / 5%),
   'icon': #77777b,
   'kbd-line': #3a3a3a,
-  'btn-line': #1f1f1f,
   'title-gradient': (linear-gradient(to bottom right, #f1f1f2 30%, rgb(241 241 242 / 30%))),
   'syntax-text': #e6e1cf,
   'syntax-comment': #5c6773,
@@ -315,12 +316,11 @@ $ss-paper-light: (
   'ui-2': #dee2e6,
   'ui-3': rgb(223 233 241 / 64%),
   'tx-3': #757575,
-  'tx-2': #6f6f6f,
+  'tx-2': #6d6c6c,
   'tx': #4f4f4f,
   'note-text': rgb(46 46 46 / 77%),
   'icon': #8e8e8e,
-  'kbd-line': rgb(189 189 189),
-  'btn-line': #efefef,
+  'kbd-line': #b8b8b8,
   'title-gradient': (linear-gradient(to bottom right, #4f4f4f 30%, #4f4f4f4c)),
   'shadow-card': rgb(211 209 209 / 15%) 0 0 0 1px
 );
@@ -329,15 +329,14 @@ $ss-paper-dark: (
   'bg': #000000,
   'bg-2': #242424,
   'ui': #2c2d2d,
-  'ui-2': #3c3c3c,
+  'ui-2': #373737,
   'ui-3': #262626,
   'tx-3': #868686,
-  'tx-2': #cecdcd,
-  'tx': #d7d5d3,
+  'tx-2': #b8b8b8,
+  'tx': #c5c5c5,
   'note-text': rgb(216 212 212 / 75%),
-  'icon': #787878,
-  'kbd-line': #6a6a6a,
-  'btn-line': #292929,
+  'icon': #757575,
+  'kbd-line': #686868,
   'title-gradient': (linear-gradient(to bottom right, #d7d5d3 30%, #d7d5d34d)),
   'shadow-card': rgb(137 135 135 / 24%) 0 0 0 1px
 );

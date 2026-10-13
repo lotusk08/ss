@@ -48,3 +48,7 @@ export function icon(name, { set = 'line', size = '1em', label = '', className =
   if (!body) return '';
   return `<svg class="${cls}" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" ${a11y} focusable="false">${body}</svg>`;
 }
+
+export function modeIcon(id = 'ss-mode') {
+  return `<svg class="ss-mode-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" focusable="false"><defs><clipPath id="${id}"><path d="M0-5h55v37h-55zm32 12a1 1 0 0025 0 1 1 0 00-25 0"/></clipPath></defs><g clip-path="url(#${id})"><circle cx="16" cy="16" r="15"/></g></svg>`;
+}

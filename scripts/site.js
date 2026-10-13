@@ -1,7 +1,7 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { icon, noteIcon } from '../src/icons/index.js';
+import { icon, line, modeIcon, noteIcon, solid } from '../src/icons/index.js';
 
 const here = fileURLToPath(new URL('..', import.meta.url));
 const out = join(here, '_site');
@@ -42,8 +42,8 @@ async function privateFonts() {
 function privateFaces(got) {
   const has = (file) => got.includes(file);
   const faces = [];
-  if (has('domaine/regular-italic.woff2')) faces.push(`@font-face{font-family:'Domaine Display Narrow';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/domaine/regular-italic.woff2') format('woff2')}`);
-  if (has('domaine/semibold-italic.woff2')) faces.push(`@font-face{font-family:'Domaine Display Narrow';font-style:italic;font-weight:600;font-display:swap;src:url('fonts/domaine/semibold-italic.woff2') format('woff2')}`);
+  if (has('domaine/regular-italic.woff2')) faces.push(`@font-face{font-family:'Domaine Display Narrow';font-style:italic;font-weight:400;font-display:block;src:url('fonts/domaine/regular-italic.woff2') format('woff2')}`);
+  if (has('domaine/semibold-italic.woff2')) faces.push(`@font-face{font-family:'Domaine Display Narrow';font-style:italic;font-weight:600;font-display:block;src:url('fonts/domaine/semibold-italic.woff2') format('woff2')}`);
   for (const weight of [400, 700]) {
     const local = weight === 700 ? "local('Helvetica Neue Bold'), local('HelveticaNeue-Bold')" : "local('Helvetica Neue'), local('HelveticaNeue')";
     for (const [script, range] of [['latin', LATIN], ['vietnamese', VIETNAMESE]]) {
@@ -114,12 +114,13 @@ async function indexNow() {
 const LANGS = { shell: 'Shell', css: 'CSS', js: 'JavaScript', html: 'HTML' };
 
 async function page(fonts) {
+  let modes = 0;
   const signature = (await read('img/signature.svg')).match(/<path[^>]+\/>/)[0];
   const css = [
     await read('dist/ss.css'),
     (await read('css/fonts.css')).replaceAll("url('../fonts/", "url('fonts/"),
     privateFaces(fonts),
-    (await read('css/base.css')).replaceAll("url('../img/grain.png')", "url('img/grain.png')"),
+    (await read('css/base.css')).replaceAll("url('../img/paper-grey.png')", "url('img/paper-grey.png')"),
     await read('css/icons.css'),
     await read('css/ui.css'),
     await read('css/syntax.css'),
@@ -134,6 +135,7 @@ async function page(fonts) {
     .replace('<!--css-->', () => `<style>\n${css}</style>`)
     .replace('<!--js-->', () => `<script>\n${js}</script>`)
     .replace('<!--include:signature-->', signature)
+    .replace(/<!--mode-->/g, () => modeIcon(`ss-mode-${++modes}`))
     .replace(/<!--icon:([\w-]+):(\w+)(?::([\w-]+))?-->/g, (_, name, set, className) => icon(name, { set, className: className ?? '' }))
     .replace(/<!--note:(\w+)-->/g, (_, type) => noteIcon(type))
     .replace(/<!--code:(\w+):([\s\S]*?)-->/g, (_, lang, code) =>
@@ -146,7 +148,7 @@ let js = '';
 
 const llms = (readme) => `# Steve's Style
 
-> The design system of Steve Hoang's products (stevehoang.com, write, Think Why?, Think tree, IO): colour tokens on two surfaces (Paper for reading, Desk for working) and two lights (blue by day, ember by night), type, 117 icons, notes, controls, canvas art and motion, published as the \`ss\` package (\`npm i github:lotusk08/ss\`).
+> The design system of Steve Hoang's products (stevehoang.com, write, Think Why?, Think tree, IO): colour tokens on two surfaces (Paper for reading, Desk for working) and two lights (blue by day, ember by night), type, ${Object.keys(line).length + Object.keys(solid).length} icons, notes, controls, canvas art and motion, published as the \`ss\` package (\`npm i github:lotusk08/ss\`).
 
 Use the roles, never raw colours. Paper is \`<html data-surface="paper">\`; Desk is the default. Mode is \`data-mode="light|dark"\` on \`<html>\`, following the system until the reader picks the other.
 
@@ -166,8 +168,8 @@ Use the roles, never raw colours. Paper is \`<html data-surface="paper">\`; Desk
 
 ## Icons
 
-- [Solid sprite](${origin}/icons/solid.svg): 50 Font Awesome Free icons
-- [Line sprite](${origin}/icons/line.svg): 67 line icons on a 24px grid
+- [Solid sprite](${origin}/icons/solid.svg): ${Object.keys(solid).length} Font Awesome Free icons
+- [Line sprite](${origin}/icons/line.svg): ${Object.keys(line).length} line icons on a 24px grid
 
 ## Source
 
@@ -274,7 +276,7 @@ export async function build() {
   const fonts = await privateFonts();
   js = await bundle();
   await mkdir(join(out, 'img'), { recursive: true });
-  await cp(join(here, 'img/grain.png'), join(out, 'img/grain.png'));
+  await cp(join(here, 'img/paper-grey.png'), join(out, 'img/paper-grey.png'));
   await cp(join(here, 'img/signature.svg'), join(out, 'img/signature.svg'));
   for (const file of ['favicon.svg', 'favicon-dark.svg', 'apple-touch-icon.png', 'og.png', `${INDEXNOW_KEY}.txt`]) {
     await cp(join(here, 'site', file), join(out, file)).catch(() => {});
