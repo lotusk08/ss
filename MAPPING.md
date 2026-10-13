@@ -93,7 +93,11 @@ What the `≈` rows keep:
 | `--ss-ease-quart`     | `t.ease(out)`                 | —                  | —                  | —                          |
 | `--ss-ease-spring`    | `t.$spring`                   | —                  | —                  | —                          |
 | `--ss-dur-hover`      | `t.time(slow)`, `t.$answer`   | —                  | —                  | —                          |
-| `--ss-dur-*`          | `t.time()`                    | `--motion` ≈       | —                  | `--ux-dur-*`               |
+| `--ss-ease-quint`     | —                             | `--ease-out`       | —                  | —                          |
+| `--ss-dur-enter`      | —                             | `--motion`         | —                  | —                          |
+| `--ss-dur-leave`      | —                             | sheet `0.18s`      | —                  | —                          |
+| `--ss-move-by`        | —                             | sheet `8px`        | —                  | —                          |
+| `--ss-dur-*`          | `t.time()`                    | —                  | —                  | `--ux-dur-*`               |
 | `--ss-tap-target`     | `$-tap`                       | —                  | —                  | `--ux-control-h-touch`     |
 | `--ss-control-h`      | —                             | —                  | `.btn` height      | `--ux-control-h`           |
 | `--ss-z-*`            | `t.z()`                       | —                  | —                  | `--ux-z-*`                 |
@@ -133,6 +137,15 @@ pixels, the nearest to them, which the apps use.
 | `.ss-mode`          | —                      | `#mode-toggle`          | —                      |
 | `.ss-top`           | —                      | `#back-to-top`          | —                      |
 | `.ss-pager`         | —                      | `.post-navigation`      | —                      |
+
+| SS motion            | why                                   | think                              |
+| -------------------- | ------------------------------------- | ---------------------------------- |
+| `.ss-move` + `.show` | `.shown` on `.sheet`, `.tips`, `.toast` | `transition:slideFade`           |
+| `.ss-move.up.in`     | `.sheet` (8px, 0.98)                  | export menu (`y: 8`)               |
+| `.ss-move.up` on `dialog` | `dialog` (12px, blurred backdrop) | —                                  |
+| `.ss-move.wide`      | undo and redo (`slide`, `axis: 'x'`)  | —                                  |
+| `.ss-move.right.whole` | —                                   | `.editor-panel` from the left      |
+| `.ss-move.left`, `.right` | —                                | Edit/View icon (`x: ±8`)           |
 | `kbd`               | —                      | `kbd`                   | —                      |
 
 ## Icons

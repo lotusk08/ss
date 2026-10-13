@@ -93,6 +93,24 @@ Nothing here was invented; each value is one the projects already ship.
   and 112 cells across in portrait); where a cell is 4px or more the fluid
   canvas is blurred by three quarters of a cell, as the blog's `.soft`.
   `.ss-art` is the blog's `#art`.
+- Move: `.ss-move` is why's way in and out (its `.sheet`, `.tips`, toast and
+  `dialog`): hidden until `.show` or `[open]` (or `:popover-open`), entering
+  over `--ss-dur-enter` (why's `--motion`, 240ms) on `--ss-ease-quint` (why's
+  `--ease-out`) and leaving faster, over `--ss-dur-leave` (180ms) on `ease`,
+  `visibility` riding along so it stays seen until the fade ends. Alone it
+  fades; `.up`, `.down`, `.left` and `.right` travel that way into place over
+  `--ss-move-by` (8px, why's sheet; 12px on a `dialog`, why's dialog) and back
+  the way they came; `.in` grows from 0.98 (why's sheet), `.out` settles from
+  1.02; `.whole` travels the element's own size and 2em, as think's editor
+  panel slides from the left; `.wide` and `.tall` open in place from nothing
+  and push their neighbours, as why's undo and redo slide in (grid tracks,
+  with the padding, margin and border taken to 0 while hidden; the content
+  is one child). A `dialog` and a popover come in through `@starting-style`
+  and stay drawn while they leave (`display` and `overlay` as
+  `allow-discrete`), the dialog's backdrop blurring 5px under 8% black, as
+  why's. Under reduced motion only the fade is left. `enter()` and `leave()` in
+  `js/motion.js` are for what a script adds and removes: `enter()` settles the
+  hidden state first, so a direction changed while hidden does not glide.
 - Grain: the blog's `paper-grey.png`, a 300px tile of mid-grey ink drawn at
   100px as `body.ss-grain::after` at `z-index: -1`, so it lies over the art
   and under the text and the one tile darkens white and lightens black alike.
@@ -184,7 +202,9 @@ Nothing here was invented; each value is one the projects already ship.
   under `dist/icons/` are its output with the class and aria attributes taken
   off. The sprites leave stroke and fill to `css/icons.css`, so a `<use>` takes
   `--ss-icon-stroke` and the text colour.
-- Nothing in `motion.css` starts hidden waiting for a script. Scroll reveals
+- Nothing in `motion.css` starts hidden waiting for a script, but `.ss-move`,
+  which is for what comes and goes (menus, sheets, dialogs, toasts) and is
+  never put on what should be there on load. Scroll reveals
   run only under `@supports (animation-timeline: view())`; elsewhere the
   element is simply there. Load animations finish within a second. A scroll
   timeline ignores `animation-delay`, so `.ss-stagger` staggers by shifting

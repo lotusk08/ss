@@ -243,3 +243,187 @@
     transform-origin: left;
   }
 }
+
+.ss-move {
+  --ss-move-x: 0px;
+  --ss-move-y: 0px;
+  --ss-move-s: 1;
+
+  opacity: 0;
+  visibility: hidden;
+  transition-property: opacity, visibility, translate, scale;
+  transition-duration: var(--ss-dur-leave);
+  transition-timing-function: ease;
+}
+
+.ss-move:is(.show, [open]) {
+  opacity: 1;
+  visibility: visible;
+  transition-duration: var(--ss-dur-enter);
+  transition-timing-function: var(--ss-ease-quint);
+}
+
+.ss-move:popover-open {
+  opacity: 1;
+  visibility: visible;
+  transition-duration: var(--ss-dur-enter);
+  transition-timing-function: var(--ss-ease-quint);
+}
+
+.ss-move.up {
+  --ss-move-y: var(--ss-move-by);
+}
+
+.ss-move.down {
+  --ss-move-y: calc(-1 * var(--ss-move-by));
+}
+
+.ss-move.left {
+  --ss-move-x: var(--ss-move-by);
+}
+
+.ss-move.right {
+  --ss-move-x: calc(-1 * var(--ss-move-by));
+}
+
+.ss-move.in {
+  --ss-move-s: 0.98;
+}
+
+.ss-move.out {
+  --ss-move-s: 1.02;
+}
+
+dialog.ss-move {
+  --ss-move-by: 12px;
+}
+
+.ss-move.whole {
+  --ss-move-by: calc(100% + 2em);
+}
+
+.ss-move:is(.wide, .tall) {
+  display: grid;
+  transition-property: opacity, visibility, grid-template-columns, grid-template-rows, padding, margin, border-width;
+}
+
+.ss-move:is(.wide, .tall) > * {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ss-move.wide {
+  grid-template-columns: 0fr;
+}
+
+.ss-move.tall {
+  grid-template-rows: 0fr;
+}
+
+.ss-move.wide:not(.show, [open]) {
+  margin-inline: 0;
+  padding-inline: 0;
+  border-inline-width: 0;
+}
+
+.ss-move.tall:not(.show, [open]) {
+  margin-block: 0;
+  padding-block: 0;
+  border-block-width: 0;
+}
+
+.ss-move.wide:is(.show, [open]) {
+  grid-template-columns: 1fr;
+}
+
+.ss-move.tall:is(.show, [open]) {
+  grid-template-rows: 1fr;
+}
+
+dialog.ss-move::backdrop {
+  background-color: rgb(0 0 0 / 0%);
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  transition-property: background-color, -webkit-backdrop-filter, backdrop-filter;
+  transition-duration: var(--ss-dur-enter, 240ms);
+  transition-timing-function: ease;
+}
+
+dialog.ss-move[open]::backdrop {
+  background-color: rgb(0 0 0 / 8%);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ss-move {
+    translate: var(--ss-move-x) var(--ss-move-y);
+    scale: var(--ss-move-s);
+  }
+
+  .ss-move:is(.show, [open]) {
+    translate: none;
+    scale: none;
+  }
+
+  .ss-move:popover-open {
+    translate: none;
+    scale: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ss-move,
+  .ss-move:is(.wide, .tall) {
+    transition-property: opacity, visibility;
+  }
+}
+
+@supports (transition-behavior: allow-discrete) {
+  .ss-move:is(dialog, [popover]) {
+    transition-property: opacity, visibility, translate, scale, overlay, display;
+    transition-behavior: allow-discrete;
+  }
+
+  dialog.ss-move::backdrop {
+    transition-property: background-color, -webkit-backdrop-filter, backdrop-filter, overlay, display;
+    transition-behavior: allow-discrete;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ss-move:is(dialog, [popover]) {
+      transition-property: opacity, visibility, overlay, display;
+    }
+  }
+}
+
+@starting-style {
+  .ss-move[open] {
+    opacity: 0;
+  }
+
+  .ss-move:popover-open {
+    opacity: 0;
+  }
+
+  dialog.ss-move[open]::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @starting-style {
+    .ss-move[open] {
+      translate: var(--ss-move-x) var(--ss-move-y);
+      scale: var(--ss-move-s);
+    }
+
+    .ss-move:popover-open {
+      translate: var(--ss-move-x) var(--ss-move-y);
+      scale: var(--ss-move-s);
+    }
+  }
+}

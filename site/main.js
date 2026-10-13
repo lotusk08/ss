@@ -2,7 +2,7 @@ import { accents, base, motion, roles, surfaces } from '../src/palette.js';
 import { scale } from '../src/scale.js';
 import { icon, line, solid } from '../src/icons/index.js';
 import { initMode, onMode, toggleMode } from '../js/mode.js';
-import { backToTop } from '../js/motion.js';
+import { backToTop, enter, leave } from '../js/motion.js';
 import { dynamic, swap } from '../js/swap.js';
 
 const $ = (selector) => document.querySelector(selector);
@@ -122,6 +122,24 @@ $('#curves').innerHTML = Object.entries(motion)
   .map(([name, value]) => `<div class="curve${name === 'ease-out' ? ' accent' : ''}" style="--ease:${value}"><span>${name.slice(5)}<code>${value}</code></span><div class="track"><i></i></div></div>`)
   .join('');
 $('#play').addEventListener('click', () => $('#curves').classList.toggle('go'));
+
+const moveBox = $('#move-box');
+let moved = null;
+for (const button of document.querySelectorAll('[data-move]')) {
+  button.addEventListener('click', async () => {
+    const kind = button.dataset.move;
+    const shown = moveBox.classList.contains('show');
+    if (shown) await leave(moveBox);
+    if (shown && kind === moved) {
+      moved = null;
+      return;
+    }
+    moveBox.className = `move-box ss-card ss-move ${kind}`.trim();
+    moved = kind;
+    enter(moveBox);
+  });
+}
+$('#move-open').addEventListener('click', () => $('#move-dialog').showModal());
 
 const clean = (html) => html.replace(/\s(data-mode-button|style="[^"]*")/g, '').trim();
 for (const part of document.querySelectorAll('.part')) {

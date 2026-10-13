@@ -259,7 +259,23 @@ the tab is hidden and draw one still frame under reduced motion. `?art=plum`
 or `?art=fluid` forces one. The signature (`img/signature.svg`,
 `.ss-signature`) writes itself every fifteen seconds.
 
-`backToTop(button)` drives the diamond. `css/motion.css` adds
+`backToTop(button)` drives the diamond.
+
+What comes and goes moves as in why: `.ss-move`, shown by `.show`, `[open]`
+or `:popover-open`, enters over 240ms and leaves over 180ms. Alone it fades;
+add `.up`, `.down`, `.left`, `.right` to slide that way (8px), `.in` or `.out`
+to zoom, `.whole` to come from beyond its own size, `.wide` or `.tall` to open
+in place and push its neighbours (wrap the content in one child). They
+combine: `ss-move up in` is why's menu sheet. A `<dialog class="ss-move up">`
+rises 12px and blurs the page behind with no script; for elements a script
+adds or removes, `enter(el)` and `leave(el, { remove: true })` from
+`ss/motion`.
+
+```html
+<div class="ss-pop ss-move up in" id="menu">…</div>
+```
+
+`css/motion.css` adds
 load and scroll reveals, and the blog's page switch: put `ss-navigated` on
 `<html>` after a client-side route change, and `.ss-slide` and the children of
 `.ss-slide-content` rise a third of a line and fade in over 600ms, 60ms

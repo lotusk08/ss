@@ -125,6 +125,10 @@ features needed at once get two buttons.
   script. Everything that moves stops under `prefers-reduced-motion`; fades
   and colour changes stay.
 - A mode switch is instant: `setMode()` holds transitions off for two frames.
+- What comes and goes takes `.ss-move`: fade by default, `.up` `.down`
+  `.left` `.right` to slide, `.in` `.out` to zoom, `.whole` for a panel from
+  off its edge, `.wide` `.tall` to open in place. In over 240ms, out over
+  180ms, back the way it came. Never on content that should be there on load.
 - Native first: CSS scroll-driven animation and View Transitions. GSAP only
   for a timeline CSS cannot express. No smooth-scroll library. One animation
   library per page at most.

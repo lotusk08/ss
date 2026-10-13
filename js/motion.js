@@ -94,3 +94,36 @@ export function backToTop(button, { after = '.ss-topbar' } = {}) {
     clearTimeout(fade);
   };
 }
+
+const settle = (el) => {
+  const style = getComputedStyle(el);
+  const times = (value) => value.split(',').map((part) => parseFloat(part) * 1000);
+  const delays = times(style.transitionDelay);
+  return Math.max(0, ...times(style.transitionDuration).map((time, i) => time + delays[i % delays.length]));
+};
+
+export function enter(el) {
+  el.classList.remove('show');
+  el.style.transition = 'none';
+  void getComputedStyle(el).opacity;
+  el.style.transition = '';
+  el.classList.add('show');
+}
+
+export function leave(el, { remove = false } = {}) {
+  el.classList.remove('show');
+  return new Promise((resolve) => {
+    let timer = null;
+    const done = () => {
+      clearTimeout(timer);
+      el.removeEventListener('transitionend', end);
+      if (remove) el.remove();
+      resolve();
+    };
+    const end = (event) => {
+      if (event.target === el && event.propertyName === 'opacity') done();
+    };
+    el.addEventListener('transitionend', end);
+    timer = setTimeout(done, settle(el) + 50);
+  });
+}

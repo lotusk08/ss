@@ -169,6 +169,9 @@
           <h2 class="ss-heading">Motion<a class="anchor" href="#motion" aria-label="Link to this section"><!--icon:hashtag:solid--></a></h2>
           <div class="curves" id="curves"></div>
           <div class="choice"><button class="ss-btn" type="button" id="play"><!--icon:refresh:line-->Play</button></div>
+          <div class="moves"><button class="ss-btn small" type="button" data-move="">Fade</button><button class="ss-btn small" type="button" data-move="up">Up</button><button class="ss-btn small" type="button" data-move="down">Down</button><button class="ss-btn small" type="button" data-move="left">Left</button><button class="ss-btn small" type="button" data-move="right">Right</button><button class="ss-btn small" type="button" data-move="in">In</button><button class="ss-btn small" type="button" data-move="out">Out</button><button class="ss-btn small" type="button" data-move="up in">Up and in</button><button class="ss-btn small" type="button" data-move="wide">Wide</button><button class="ss-btn small" type="button" data-move="tall">Tall</button><button class="ss-btn small" type="button" data-move="right whole">Whole</button><button class="ss-btn small" type="button" id="move-open">Dialog</button></div>
+          <div class="move-stage"><div class="move-box ss-card ss-move" id="move-box"><div>Comes and goes</div></div></div>
+          <dialog class="move-dialog ss-pop ss-move up" id="move-dialog" aria-labelledby="move-dialog-title"><p id="move-dialog-title">Rises 12px over 240ms while the page behind blurs, and sinks back as it closes.</p><form method="dialog"><button class="ss-btn" type="submit">Close</button></form></dialog>
         </section>
 
         <section id="use">

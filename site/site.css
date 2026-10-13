@@ -482,6 +482,37 @@ main {
   background: var(--ss-accent);
 }
 
+.moves {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.move-stage {
+  display: grid;
+  place-items: center;
+  min-height: 7rem;
+  overflow: hidden;
+  border-block: 1px solid var(--ss-ui);
+}
+
+.move-box {
+  padding: 0.75rem 1.25rem;
+  color: var(--ss-tx-2);
+  white-space: nowrap;
+}
+
+.move-dialog {
+  width: min(22rem, calc(100vw - 2rem));
+  padding: 1.25rem;
+  color: var(--ss-tx);
+}
+
+.move-dialog p {
+  margin: 0 0 1rem;
+}
+
 .endpoints {
   display: grid;
   gap: 0;

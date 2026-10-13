@@ -195,17 +195,21 @@ export const motion = {
   'ease-hover': 'cubic-bezier(0.645, 0.045, 0.355, 1)',
   'ease-quart': 'cubic-bezier(0.165, 0.84, 0.44, 1)',
   'ease-spring': 'cubic-bezier(0, 0, 0.15, 1.25)',
+  'ease-quint': 'cubic-bezier(0.22, 1, 0.36, 1)',
   'ease-back': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
   'ease-expo': 'cubic-bezier(0.87, 0, 0.13, 1)',
   'dur-micro': '150ms',
   'dur-hover': '300ms',
+  'dur-enter': '240ms',
+  'dur-leave': '180ms',
   'dur-small': '250ms',
   'dur-medium': '400ms',
   'dur-large': '600ms',
   'dur-hero': '1000ms',
   stagger: '60ms',
   'reveal-shift': '30px',
-  'reveal-dur': '700ms'
+  'reveal-dur': '700ms',
+  'move-by': '8px'
 };
 
 export const size = {
