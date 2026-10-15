@@ -233,8 +233,9 @@ whose source is `site/index.html`.
 
 ## Icons
 
-- **solid** — 62 Font Awesome Free icons, as the blog, why and think use them,
-  with play and pause for video. For icons beside text.
+- **solid** — 64 icons: Font Awesome Free, as the blog, why and think use
+  them, with play and pause for video, and the apps' own marks (`io`,
+  `things`, `why`, `think`). For icons beside text.
 - **line** — 68 icons on a 24px grid at 1.6 stroke, from IO and write. For a
   workspace full of controls.
 
