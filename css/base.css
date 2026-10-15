@@ -53,6 +53,11 @@ h4 {
   color: var(--ss-tx);
   font-weight: 600;
   line-height: var(--ss-leading-tight);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 a {

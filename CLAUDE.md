@@ -1,7 +1,7 @@
 # CLAUDE.md
 
-ss, Steve's Style: the design tokens, icons, components, art and motion Steve
-Hoang's products (stevehoang.com, write, Think Why?, Think tree, IO) share,
+ss, Simple Style: the design tokens, icons, components, art and motion Steve
+Hoang's products (stevehoang.com, write, Think Why?, Think tree, Things, IO) share,
 gathered so a new product takes them from here. One source, every format
 generated from it. The repository is public and published at
 style.stevehoang.com, which is built from `site/`. The README opens with the
@@ -14,9 +14,9 @@ and should keep matching it.
 
 style.stevehoang.com shows SS; it is not a copy of the blog. It stays one
 plain column: no contents panel, no signature, no tagline, no art or grain
-behind it, no search. Its one piece of chrome is the blog's back-to-top
-diamond, which counts how much has been read. Add a section before adding
-chrome.
+behind it, no search. Its chrome is the blog's back-to-top diamond, which
+counts how much has been read, and the horizon veil at the top and bottom of
+the screen. Add a section before adding chrome.
 
 The code carries no comments. What a piece is for, and where its values came
 from, is written here instead.
@@ -27,7 +27,8 @@ from, is written here instead.
   and `dist/tokens.json` from `src/palette.js`, and the icon sprites and single
   files under `dist/icons/` from `src/icons/`.
 - `npm run site` — writes `_site/` for style.stevehoang.com: `site/index.html`
-  with every stylesheet and script inlined, the fonts, icons, tokens,
+  with every stylesheet and script inlined, the fonts, icons, tokens, the
+  photos and video in `site/media/`,
   `llms.txt`, `llms-full.txt`, `robots.txt`, `sitemap.xml` and `_headers`.
   `SS_PRIVATE_FONTS=<stevehoang.com>/public/assets/fonts` reads Domaine and
   Helvetica Neue from a local checkout instead of fetching them.
@@ -93,6 +94,53 @@ Nothing here was invented; each value is one the projects already ship.
   and 112 cells across in portrait); where a cell is 4px or more the fluid
   canvas is blurred by three quarters of a cell, as the blog's `.soft`.
   `.ss-art` is the blog's `#art`.
+- Things (thing.stevehoang.com, built on SS): the segment's sliding pill
+  (`pill()`: one `::before` placed from the pressed or selected button, moving
+  over `--ss-dur-small` on `--ss-ease-out` once it has been placed, so it never
+  slides in on load), the "Load demo" sheen (`.ss-sheen`: a 100° accent band
+  through `currentcolor`, 3.6s on `--ss-ease-hover`, resting from 55%; none
+  under reduced motion or forced colours), and its fade-through
+  (`through()` and `.ss-through`: the old view out over `--ss-dur-micro` on
+  `ease`, the new in over `--ss-dur-enter` on `--ss-ease-quint` from halfway,
+  as a View Transition). Its rule that readable text uses `--ss-tx-2` or
+  stronger, `--ss-tx-3` only for placeholders and marks, is in the skill.
+- Media (`css/media.css`, `js/media.js`), each value from where it ships:
+  - `.ss-gallery` is the blog's `Carousel.vue` and `.carousel` (itself
+    Paco Coursey's paco.me/craft/carousel): snap to the middle with
+    `snap-stop: always`, half-width spacers at both ends, the others
+    `grayscale(1) opacity(40%) blur(2px)` at `scale(0.95)` over 0.4s on `ease`
+    (only the filter under reduced motion), cursors pointing the way to go,
+    the middle one picked 70ms after the scroll stops. Tapping one scrolls the
+    row only, as Things centres its tabs, never the page.
+  - `.ss-develop` is the blog's `reveal`: from `blur(20px)` through a
+    `brightness(2)` flash at 10% to clear, 600ms on `--ss-ease-quart`, once a
+    late photo has loaded and is in view. `develop()` hides it, CSS never does.
+  - `--ss-media-gradient` is the blog's `--img-bg`.
+  - `.ss-veil` and `.ss-horizon` are paco.me's `.blur` and its craft pages'
+    edges: `blur(5px)` at 0.95, masked from 25% to nothing, over a gradient of
+    the page colour, 96px at the screen's edges (as tall as his page's top)
+    and 64px on a box. The horizon fades in over the first 96px of scroll and
+    out over the last, where scroll timelines exist; without them it is
+    always on, and the site lifts its top bar above it. A page with a
+    horizon gets `scroll-padding-block` as tall, so an anchor lands clear.
+  - `.ss-zoom` is paco.me/craft/image: the photo scales from its top to fill
+    the screen less 48px, centred, over 0.48s on `ease`, scrolling to 48px
+    from the top; the margin under it grows so the caption follows.
+  - `.ss-video` is paco.me/craft/video's control: dark glass
+    (`blur(10px) brightness(0.8)` over 40% of `--ss-tooltip`), hidden 40% down
+    while it plays and shown in 100ms under the pointer. Playing in view
+    (half of it) and pausing off screen is UI Skills' rule for loops.
+  - The 4px blur of `.ss-crossfade`, `.ss-enter.blur` and `.ss-reveal.blur`
+    is shud.in's `appear` and `hide`; the crossfade's times are Things'.
+  - `.ss-frame`'s hairline over the photo and the reserved aspect ratio are
+    UI Skills' (`outline-images-neutrally`, `reserve-space-with-aspect-ratio`);
+    `--ss-frame` is 10% of the ink. The 3% hover zoom of `.ss-frame.zoom` is
+    the one value new here.
+  - The photos and the video in `site/media/` are SS's own fluid and plum art,
+    drawn in the accent hues; the video is one full turn of the fluid field,
+    so it loops without a seam.
+- Text: `text-wrap: balance` on headings is the blog's; `pretty` on
+  paragraphs is UI Skills' and shud.in's.
 - Move: `.ss-move` is why's way in and out (its `.sheet`, `.tips`, toast and
   `dialog`): hidden until `.show` or `[open]` (or `:popover-open`), entering
   over `--ss-dur-enter` (why's `--motion`, 240ms) on `--ss-ease-quint` (why's
@@ -153,7 +201,9 @@ Nothing here was invented; each value is one the projects already ship.
   why's `icons.js` for the names the site lacks (`image` and `vector` among
   them; why's `share` is another glyph than the site's and is left out), then
   Font Awesome Free 6.7.2 itself for the classes think uses that no product
-  had as a path: `eye`, `file-export`, `file-image` and `file-pdf` (why's `pdf`).
+  had as a path: `eye`, `file-export`, `file-image` and `file-pdf` (why's `pdf`),
+  and `play`, `pause` (the video's button) and `scale-balanced` (Things, in
+  the site's footer).
 - Hero, rhythm and motion: from claude-skill-awwwards (MIT), where it did
   not contradict the products. Its easing and duration scale were already
   IO's; it added `--ss-display-0`, the hero leading and tracking, the body and
@@ -202,6 +252,11 @@ Nothing here was invented; each value is one the projects already ship.
   under `dist/icons/` are its output with the class and aria attributes taken
   off. The sprites leave stroke and fill to `css/icons.css`, so a `<use>` takes
   `--ss-icon-stroke` and the text colour.
+- UI Skills (MIT, credited in `skills/ss/NOTICE.md`), paco.me and shud.in
+  give values and rules where the products had none; they never override a
+  product. UI Skills' press scale (0.96) is left out: the blog's press is at
+  once and does not shrink. Its solid modal scrim is left out: why blurs the
+  page behind a dialog.
 - Nothing in `motion.css` starts hidden waiting for a script, but `.ss-move`,
   which is for what comes and goes (menus, sheets, dialogs, toasts) and is
   never put on what should be there on load. Scroll reveals

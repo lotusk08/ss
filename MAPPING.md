@@ -6,7 +6,8 @@ such token. `≈` means the product's value is close to SS but not the same; the
 note under the table says what to keep.
 
 Products: **site** is stevehoang.com, **write** is write, **why** is Think Why?,
-**think** is Think tree, **io** is IO.
+**think** is Think tree, **io** is IO. Things was built on SS and uses its
+tokens as they are, so it has no column.
 
 ## Colors
 
@@ -36,6 +37,8 @@ Products: **site** is stevehoang.com, **write** is write, **why** is Think Why?,
 | `--ss-*-bg`, `--ss-*-icon` | `--note-bg`, `--note-icon` | —            | —                           | —                | `--ux-*-soft`             |
 | `--ss-shadow-card`| `--shadow`                       | `--shadow-card`   | —                           | —                | —                         |
 | `--ss-shadow-pop` | —                                | `--shadow-pop`    | `--menu-shadow` ≈           | —                | `--ux-float-shadow`       |
+| `--ss-media-gradient` | `--img-bg`                   | —                 | —                           | —                | —                         |
+| `--ss-frame`      | —                                | —                 | —                           | —                | —                         |
 
 What the `≈` rows keep:
 
@@ -147,6 +150,14 @@ pixels, the nearest to them, which the apps use.
 | `.ss-move.right.whole` | —                                   | `.editor-panel` from the left      |
 | `.ss-move.left`, `.right` | —                                | Edit/View icon (`x: ±8`)           |
 | `kbd`               | —                      | `kbd`                   | —                      |
+
+| SS media             | site                                  |
+| -------------------- | ------------------------------------- |
+| `.ss-gallery`, `gallery()` | `.carousel`, `Carousel.vue`      |
+| `.ss-develop`, `develop()` | `img.reveal`, `lqip-script.ts`   |
+
+Things uses `.ss-segment` with the sliding pill (`pill()`), `.ss-sheen`
+(its `.shimmer`) and `through()` (its `switch.ts`) as SS ships them.
 
 ## Icons
 

@@ -1,9 +1,9 @@
-# SS — Steve's Style
+# SS — Simple Style
 
 The look of Steve Hoang's products in one place:
 [stevehoang.com](https://stevehoang.com), [write](https://github.com/lotusk08/write),
-[Think Why?](https://github.com/lotusk08/why), [Think tree](https://think.stevehoang.com)
-and IO. It covers the colours, type, icons, notes, controls, art and motion they
+[Think Why?](https://github.com/lotusk08/why), [Think tree](https://think.stevehoang.com),
+[Things](https://thing.stevehoang.com) and IO. It covers the colours, type, icons, notes, controls, art and motion they
 share, as a package the next product starts from.
 
 See it at **[style.stevehoang.com](https://style.stevehoang.com)**.
@@ -186,6 +186,11 @@ like the search. From the apps: `.ss-btn` (`.primary`, `.ghost`, `.danger`,
 `.icon`, `.small`), `.ss-field`, `.ss-check`, `.ss-segment`, `.ss-chip`, `.ss-card`,
 `.ss-pop`, `.ss-menu`, `.ss-toast`, `.ss-tip` (tooltip).
 
+From Things: a segment's highlight is one pill that slides to the new choice
+(`pill(segment)` from `ss/motion`, over `--ss-dur-small` on `--ss-ease-out`),
+and a label that invites a first try carries a soft accent sheen every few
+seconds (`.ss-sheen`, none under reduced motion or forced colours).
+
 One button, many faces (`.ss-swap`, `swap(button)` from `ss/swap`): a
 setting with two or three states is one round button whose face turns to the
 next, as the blog's sun used to turn to its moon: `vi` to `en`, list to table.
@@ -228,8 +233,8 @@ whose source is `site/index.html`.
 
 ## Icons
 
-- **solid** — 59 Font Awesome Free icons, as the blog, why and think use them.
-  For icons beside text.
+- **solid** — 62 Font Awesome Free icons, as the blog, why and think use them,
+  with play and pause for video. For icons beside text.
 - **line** — 68 icons on a 24px grid at 1.6 stroke, from IO and write. For a
   workspace full of controls.
 
@@ -284,6 +289,66 @@ is one 0.3s motion (`--ss-dur-hover`, `--ss-ease-hover`), and everything that
 moves stops under reduced motion. `css/layout.css` has
 a page grid with full-bleed rooms, a bento grid and section rhythm.
 
+## Media
+
+`css/media.css` and `ss/media` move photos and video. Each comes from a
+product or a site SS admires; nothing loops or moves under reduced motion
+but a fade.
+
+- **Frame** (`.ss-frame`): a hairline (`--ss-frame`) lies over the photo's
+  edge, and the blog's soft grey (`--ss-media-gradient`) waits behind it until
+  it loads. `.zoom` grows the photo by 3% under the pointer, on the hover
+  motion. Give every photo its `width` and `height`, or an `aspect-ratio`, so
+  nothing jumps when it arrives.
+- **Develop** (`.ss-develop`, `develop()`): a photo that arrives late comes out
+  of a 20px blur with a flash of light over 600ms, the first time it is seen,
+  as the blog's photos do.
+- **Blur in**: `.ss-enter.blur` on load, and `.ss-reveal.blur` or
+  `.ss-stagger.blur` on scroll, add a 4px blur to the rise, as
+  [shud.in](https://shud.in) appears.
+- **Crossfade** (`.ss-crossfade`, `crossfade(el, i)`): faces stacked in one
+  place, the shown one `.on`. The face leaving fades and blurs out over 150ms;
+  the next comes clear over 240ms from halfway, as Things fades between its
+  panels. `through(change)` from `ss/motion` does the same to anything marked
+  `.ss-through`, as a View Transition.
+- **Gallery** (`.ss-gallery`, `gallery(el)`): the blog's carousel, after
+  [Paco Coursey](https://paco.me)'s. A row that snaps each photo to the middle;
+  the one there is clear, the rest wait grey, faded, blurred and at 95%, and
+  trade places over 400ms. Tap one to bring it over; a swipe, the wheel and Tab
+  work too.
+- **Zoom** (`.ss-zoom`, `zoom(figure)`): Paco's photo that grows in place to
+  fill the screen, less 48px, over 480ms. Tap again or press Escape.
+- **Video** (`.ss-video`, `playInView(video)`): muted and looping, it plays
+  while half of it is in view and the tab is open, and never starts itself
+  under reduced motion. Its one button is Paco's dark glass; while the video
+  plays it waits under the edge until the pointer comes.
+- **Veil** (`.ss-veil`, `.ss-veil.x` for a row): Paco's soft edge, 64px
+  (`--ss-veil`) of 5px blur fading into the page where content scrolls out
+  of a box.
+- **Horizon** (`.ss-horizon.top` first in `<body>`, `.ss-horizon.bottom`
+  last): the same veil at the top and bottom of the screen, 96px
+  (`--ss-horizon`). The top one comes in over the first 96px of scroll and the
+  bottom one goes over the last, so neither end of the page sits under it,
+  and a page with a horizon pads its anchors by as much.
+
+```html
+<div class="ss-veil x">
+  <div class="ss-gallery" role="group" aria-label="Photos">
+    <div class="on"><figure><button type="button"><img src="a.webp" width="1200" height="800" alt="…"></button><figcaption>…</figcaption></figure></div>
+    <div><figure><button type="button"><img src="b.webp" width="800" height="1200" alt="…"></button><figcaption>…</figcaption></figure></div>
+  </div>
+</div>
+```
+
+```js
+import { develop, gallery, playInView, zoom } from 'ss/media';
+
+gallery(document.querySelector('.ss-gallery'));
+zoom(document.querySelector('.ss-zoom'));
+playInView(document.querySelector('.ss-video video'));
+develop();
+```
+
 ## Use it
 
 ```css
@@ -292,6 +357,7 @@ a page grid with full-bleed rooms, a bento grid and section rhythm.
 @import 'ss/base.css';
 @import 'ss/icons.css';
 @import 'ss/ui.css';
+@import 'ss/media.css';
 ```
 
 Put `js/head.html` in the `<head>` so a saved mode paints before the first
@@ -329,7 +395,8 @@ beside its name in each product, so moving one over is a find-and-replace.
 [claude-skill-awwwards](https://github.com/tponscr-debug/claude-skill-awwwards)
 (MIT): principles, a decide-first framework, type, colour, layout, motion,
 what to avoid and a checklist, with seven craft references in
-`skills/ss/references/`.
+`skills/ss/references/`. Its rules for motion that stays light and photos
+that do not jump come from [UI Skills](https://www.ui-skills.com) (MIT).
 
 ```sh
 cp -r node_modules/ss/skills/ss ~/.claude/skills/ss
@@ -369,6 +436,9 @@ Open Font Licence (in each folder). The solid icons are Font Awesome Free,
 CC BY 4.0. The signature, favicons and social card are Steve Hoang's own marks.
 The skill's references come from
 [claude-skill-awwwards](https://github.com/tponscr-debug/claude-skill-awwwards)
-(MIT).
+(MIT), some of its rules from [UI Skills](https://github.com/ibelick/ui-skills)
+(MIT). The media motions take their values, not their code, from
+[paco.me](https://paco.me) and [shud.in](https://shud.in). The photos and video
+on the site are drawn by SS's own art.
 
 Made by [Steve Hoang](https://stevehoang.com).

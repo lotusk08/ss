@@ -2,7 +2,8 @@ import { accents, base, motion, roles, surfaces } from '../src/palette.js';
 import { scale } from '../src/scale.js';
 import { icon, line, solid } from '../src/icons/index.js';
 import { initMode, onMode, toggleMode } from '../js/mode.js';
-import { backToTop, enter, leave } from '../js/motion.js';
+import { backToTop, enter, leave, pill, through } from '../js/motion.js';
+import { crossfade, develop, gallery, playInView, zoom } from '../js/media.js';
 import { dynamic, swap } from '../js/swap.js';
 
 const $ = (selector) => document.querySelector(selector);
@@ -111,7 +112,7 @@ for (const button of document.querySelectorAll('[data-set]')) {
   button.addEventListener('click', () => {
     set = button.dataset.set;
     for (const other of document.querySelectorAll('[data-set]')) other.setAttribute('aria-pressed', String(other === button));
-    drawIcons();
+    through(drawIcons);
   });
 }
 $('#icon-q').addEventListener('input', drawIcons);
@@ -140,6 +141,27 @@ for (const button of document.querySelectorAll('[data-move]')) {
   });
 }
 $('#move-open').addEventListener('click', () => $('#move-dialog').showModal());
+
+gallery($('#gallery'));
+zoom($('#zoom'));
+playInView($('.ss-video video'));
+develop();
+
+const lights = [...$('#light').children];
+for (const button of lights) {
+  button.addEventListener('click', () => {
+    for (const other of lights) other.setAttribute('aria-pressed', String(other === button));
+    crossfade($('#crossfade'), lights.indexOf(button));
+  });
+}
+
+$('#develop').addEventListener('click', () => {
+  for (const img of document.querySelectorAll('#frames img')) {
+    img.classList.remove('ss-developed');
+    void img.offsetWidth;
+    img.classList.add('ss-developed');
+  }
+});
 
 const clean = (html) => html.replace(/\s(data-mode-button|style="[^"]*")/g, '').trim();
 for (const part of document.querySelectorAll('.part')) {
@@ -193,6 +215,7 @@ initMode();
 live();
 
 backToTop($('#back-to-top'));
+for (const segment of document.querySelectorAll('.ss-segment')) pill(segment);
 for (const button of document.querySelectorAll('.ss-swap:not(#dynamic)')) swap(button);
 
 let doneUntil = 0;

@@ -1,10 +1,10 @@
 ---
 name: ss
-description: Design in Steve's Style (SS) to Awwwards level. Use for any page, component, styling or UI work in Steve Hoang's products (stevehoang.com, write, Think Why?, Think tree, IO) or any project that installs the `ss` package. Covers art direction, type, colour, layout, motion, icons, components and the quality bar, with craft references.
+description: Design in Simple Style (SS) to Awwwards level. Use for any page, component, styling or UI work in Steve Hoang's products (stevehoang.com, write, Think Why?, Think tree, Things, IO) or any project that installs the `ss` package. Covers art direction, type, colour, layout, motion, icons, components and the quality bar, with craft references.
 user-invocable: true
 ---
 
-# Steve's Style
+# Simple Style
 
 You are the creative director of Steve Hoang's products. Work to the bar of an
 Awwwards Site of the Day and judge by its criteria: Design 40%, Usability 20%,
@@ -81,6 +81,9 @@ Answer these in the plan, before any code:
 - Selection is sand. Borders are hairlines. Depth is `--ss-shadow-card` and
   `--ss-shadow-pop`, nothing heavier.
 - Both modes are designed, not inverted. Look at every screen in each.
+- Readable text (hints, labels, captions) uses `--ss-tx-2` or stronger, which
+  clears WCAG AA; `--ss-tx-3` is only for placeholders and marks, as Things
+  does.
 - No decorative gradients. Texture is paper grain (`body.ss-grain`).
 - Detail: `references/color-systems.md` (where it says never pure white or
   black, Paper is the exception: the blog uses both).
@@ -129,6 +132,20 @@ features needed at once get two buttons.
   `.left` `.right` to slide, `.in` `.out` to zoom, `.whole` for a panel from
   off its edge, `.wide` `.tall` to open in place. In over 240ms, out over
   180ms, back the way it came. Never on content that should be there on load.
+- Media moves as the blog's: `.ss-gallery` (the middle photo clear, the rest
+  grey and blurred), `.ss-develop` (a late photo comes out of a blur),
+  `.ss-crossfade` (one face blurs out as the next comes clear), `.ss-zoom`
+  (a photo grows in place), `.ss-video` with `playInView()`, `.ss-frame`
+  (a hairline over the photo), `.ss-veil` and `.ss-horizon` (soft edges where
+  content scrolls away). Give every photo its size or an `aspect-ratio`.
+- Keep motion light (UI Skills): blur at most 8px and only for a moment, never
+  on a large surface that keeps moving; a loop pauses off screen and in a
+  hidden tab; scroll-linked motion uses scroll timelines or
+  IntersectionObserver, never a scroll handler that writes styles; no
+  `will-change` outside a running animation; enter with an ease-out, leave
+  shorter and smaller.
+- One view, one change: switch a panel with `through()` (a View Transition
+  fade-through), a segment's highlight with `pill()`.
 - Native first: CSS scroll-driven animation and View Transitions. GSAP only
   for a timeline CSS cannot express. No smooth-scroll library. One animation
   library per page at most.

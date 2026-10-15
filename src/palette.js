@@ -89,6 +89,11 @@ export const roles = {
   'syntax-inserted': { light: '#86b300', dark: '#b8cc52' },
   'syntax-deleted': { light: '#f51818', dark: '#ff3333' },
   'syntax-heading': { light: '#36a3d9', dark: '#36a3d9' },
+  'media-gradient': {
+    light: 'radial-gradient(circle, #ffffff 0%, #efefef 100%)',
+    dark: 'radial-gradient(circle, #161618 0%, #202020 100%)'
+  },
+  frame: { light: 'rgb(13 13 13 / 10%)', dark: 'rgb(255 255 255 / 10%)' },
   'shadow-card': {
     light: '0 1px 2px rgb(13 13 13 / 4%), 0 1px 3px rgb(13 13 13 / 4%)',
     dark: '0 1px 2px rgb(0 0 0 / 40%)'
@@ -222,6 +227,8 @@ export const size = {
   'focus-offset': '2px',
   'icon-size': '1em',
   'icon-stroke': '1.6',
+  veil: '64px',
+  horizon: '96px',
   'z-bar': '30',
   'z-popover': '50',
   'z-sheet': '60',

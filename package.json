@@ -1,7 +1,7 @@
 {
   "name": "ss",
   "version": "1.0.0",
-  "description": "Steve's Style: the colors, type, icons, motion and UI shared by Steve Hoang's products — stevehoang.com, write, Think Why?, Think tree and IO.",
+  "description": "Simple Style: the colors, type, icons, motion and UI shared by Steve Hoang's products — stevehoang.com, write, Think Why?, Think tree, Things and IO.",
   "author": "Steve Hoang <hi@stevehoang.com> (https://stevehoang.com)",
   "homepage": "https://style.stevehoang.com",
   "repository": {
@@ -27,6 +27,7 @@
     "./motion": "./js/motion.js",
     "./swap": "./js/swap.js",
     "./art": "./js/art.js",
+    "./media": "./js/media.js",
     "./css": "./dist/ss.css",
     "./base.css": "./css/base.css",
     "./fonts.css": "./css/fonts.css",
@@ -35,6 +36,7 @@
     "./syntax.css": "./css/syntax.css",
     "./layout.css": "./css/layout.css",
     "./motion.css": "./css/motion.css",
+    "./media.css": "./css/media.css",
     "./tailwind.css": "./dist/tailwind.css",
     "./scss": "./dist/ss.scss",
     "./tokens.json": "./dist/tokens.json",

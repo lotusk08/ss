@@ -64,7 +64,8 @@ const MODULES = [
   ['mode', 'js/mode.js'],
   ['motion', 'js/motion.js'],
   ['swap', 'js/swap.js'],
-  ['art', 'js/art.js']
+  ['art', 'js/art.js'],
+  ['media', 'js/media.js']
 ];
 
 const byFile = Object.fromEntries(MODULES.map(([name, file]) => [basename(file), name]));
@@ -125,6 +126,7 @@ async function page(fonts) {
     await read('css/ui.css'),
     await read('css/syntax.css'),
     await read('css/motion.css'),
+    await read('css/media.css'),
     await read('site/site.css')
   ].join('\n');
   const preload = fonts.includes('domaine/regular-italic.woff2')
@@ -146,9 +148,9 @@ async function page(fonts) {
 
 let js = '';
 
-const llms = (readme) => `# Steve's Style
+const llms = (readme) => `# Simple Style
 
-> The design system of Steve Hoang's products (stevehoang.com, write, Think Why?, Think tree, IO): colour tokens on two surfaces (Paper for reading, Desk for working) and two lights (blue by day, ember by night), type, ${Object.keys(line).length + Object.keys(solid).length} icons, notes, controls, canvas art and motion, published as the \`ss\` package (\`npm i github:lotusk08/ss\`).
+> The design system of Steve Hoang's products (stevehoang.com, write, Think Why?, Think tree, Things, IO): colour tokens on two surfaces (Paper for reading, Desk for working) and two lights (blue by day, ember by night), type, ${Object.keys(line).length + Object.keys(solid).length} icons, notes, controls, canvas art and motion, published as the \`ss\` package (\`npm i github:lotusk08/ss\`).
 
 Use the roles, never raw colours. Paper is \`<html data-surface="paper">\`; Desk is the default. Mode is \`data-mode="light|dark"\` on \`<html>\`, following the system until the reader picks the other.
 
@@ -247,6 +249,9 @@ const headers = `/*
 /img/*
   Cache-Control: public, max-age=2592000
 
+/media/*
+  Cache-Control: public, max-age=2592000
+
 /ss.css
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600
@@ -282,6 +287,7 @@ export async function build() {
     await cp(join(here, 'site', file), join(out, file)).catch(() => {});
   }
   await cp(join(here, 'dist/icons'), join(out, 'icons'), { recursive: true });
+  await cp(join(here, 'site/media'), join(out, 'media'), { recursive: true });
   for (const file of ['ss.css', 'tokens.json', 'tailwind.css', 'ss.scss']) await cp(join(here, 'dist', file), join(out, file));
   const readme = await read('README.md');
   const mapping = await read('MAPPING.md');

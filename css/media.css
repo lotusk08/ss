@@ -1,0 +1,409 @@
+.ss-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--ss-radius-sm);
+  background: var(--ss-media-gradient);
+  isolation: isolate;
+}
+
+.ss-frame::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 var(--ss-hairline) var(--ss-frame);
+  content: '';
+  pointer-events: none;
+}
+
+.ss-frame > :is(img, video, picture, canvas, svg) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ss-frame.zoom > :is(img, video, picture, canvas, svg) {
+    transition: scale var(--ss-dur-hover) var(--ss-ease-hover);
+  }
+
+  .ss-frame.zoom:hover > :is(img, video, picture, canvas, svg),
+  :is(a, button):hover > .ss-frame.zoom > :is(img, video, picture, canvas, svg) {
+    scale: 1.03;
+  }
+}
+
+@keyframes ss-develop {
+  0% {
+    opacity: 0;
+    filter: brightness(1) blur(20px);
+  }
+
+  10% {
+    opacity: 1;
+    filter: brightness(2) blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  img[data-develop] {
+    opacity: 0;
+  }
+
+  img.ss-developed {
+    animation: ss-develop var(--ss-dur-large) var(--ss-ease-quart) both;
+  }
+}
+
+.ss-crossfade {
+  display: grid;
+}
+
+.ss-crossfade > * {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--ss-dur-micro) ease,
+    filter var(--ss-dur-micro) ease,
+    visibility 0s linear var(--ss-dur-micro);
+}
+
+.ss-crossfade > .on {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity var(--ss-dur-enter) var(--ss-ease-quint) calc(var(--ss-dur-micro) / 2),
+    filter var(--ss-dur-enter) var(--ss-ease-quint) calc(var(--ss-dur-micro) / 2),
+    visibility 0s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ss-crossfade > :not(.on) {
+    filter: blur(4px);
+  }
+}
+
+.ss-gallery {
+  --ss-gallery-h: min(26rem, 60svh, 56vw);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ss-space-4);
+  padding-bottom: var(--ss-space-6);
+  overflow: auto hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+}
+
+.ss-gallery::before,
+.ss-gallery::after {
+  flex: 0 0 50%;
+  align-self: stretch;
+  content: '';
+}
+
+.ss-gallery > * {
+  flex: none;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  cursor: w-resize;
+}
+
+.ss-gallery > .on ~ * {
+  cursor: e-resize;
+}
+
+.ss-gallery > .on {
+  cursor: default;
+}
+
+.ss-gallery figure {
+  width: min-content;
+  margin: 0;
+  transition: filter var(--ss-dur-medium) ease;
+}
+
+.ss-gallery:has(> .on) > :not(.on) figure {
+  filter: grayscale(1) opacity(40%) blur(2px);
+  transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ss-gallery figure {
+    transition:
+      transform var(--ss-dur-medium) ease,
+      filter var(--ss-dur-medium) ease;
+  }
+}
+
+.ss-gallery button {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ss-radius-sm);
+  background: none;
+  cursor: inherit;
+}
+
+.ss-gallery img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: var(--ss-gallery-h);
+  border-radius: var(--ss-radius-sm);
+  background: var(--ss-media-gradient);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ss-gallery figcaption {
+  margin-top: var(--ss-space-2);
+  color: var(--ss-tx-2);
+  font-size: var(--ss-text-sm);
+  line-height: var(--ss-leading-ui);
+  text-align: end;
+}
+
+.ss-zoom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-inline: 0;
+}
+
+.ss-zoom > button {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ss-radius-sm);
+  background: none;
+  cursor: zoom-in;
+  transform-origin: top center;
+}
+
+.ss-zoom > button img {
+  display: block;
+  border-radius: inherit;
+  background: var(--ss-media-gradient);
+}
+
+.ss-zoom[data-state='open'] {
+  position: relative;
+  z-index: 2;
+}
+
+.ss-zoom[data-state='open'] > button {
+  cursor: zoom-out;
+}
+
+.ss-zoom figcaption {
+  margin-top: var(--ss-space-2);
+  color: var(--ss-tx-2);
+  font-size: var(--ss-text-sm);
+  line-height: var(--ss-leading-ui);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ss-zoom > button {
+    transition:
+      transform 480ms ease,
+      margin 480ms ease;
+  }
+}
+
+.ss-video {
+  position: relative;
+  margin-inline: 0;
+}
+
+.ss-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--ss-radius-sm);
+  background: var(--ss-media-gradient);
+}
+
+.ss-video-toggle {
+  position: absolute;
+  bottom: var(--ss-space-4);
+  left: var(--ss-space-4);
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ss-radius-full);
+  background: color-mix(in srgb, var(--ss-tooltip) 40%, transparent);
+  -webkit-backdrop-filter: blur(10px) brightness(0.8);
+  backdrop-filter: blur(10px) brightness(0.8);
+  color: var(--ss-on-tooltip);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition:
+    opacity 100ms ease,
+    transform 100ms ease;
+}
+
+.ss-video-toggle .ss-icon {
+  display: none;
+}
+
+.ss-video[data-state='playing'] .ss-video-toggle .pause,
+.ss-video:not([data-state='playing']) .ss-video-toggle .play {
+  display: block;
+}
+
+@media (hover: hover) {
+  .ss-video[data-state='playing']:not(:hover, :focus-within) .ss-video-toggle {
+    opacity: 0;
+    transform: translateY(40%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ss-video-toggle {
+    transition-property: opacity;
+  }
+
+  .ss-video .ss-video-toggle {
+    transform: none;
+  }
+}
+
+.ss-veil {
+  position: relative;
+}
+
+.ss-veil::before,
+.ss-veil::after,
+.ss-horizon {
+  z-index: 1;
+  background: linear-gradient(var(--to), var(--ss-veil-bg, var(--ss-bg)), transparent);
+  opacity: 0.95;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  -webkit-mask-image: linear-gradient(var(--to), #000 25%, transparent);
+  mask-image: linear-gradient(var(--to), #000 25%, transparent);
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ss-veil::before,
+.ss-veil::after {
+  position: absolute;
+  content: '';
+}
+
+.ss-veil::before {
+  --to: to bottom;
+
+  inset: 0 0 auto;
+  height: var(--ss-veil);
+}
+
+.ss-veil::after {
+  --to: to top;
+
+  inset: auto 0 0;
+  height: var(--ss-veil);
+}
+
+.ss-veil.x::before {
+  --to: to right;
+
+  inset: 0 auto 0 0;
+  width: var(--ss-veil);
+  height: auto;
+}
+
+.ss-veil.x::after {
+  --to: to left;
+
+  inset: 0 0 0 auto;
+  width: var(--ss-veil);
+  height: auto;
+}
+
+:root:has(.ss-horizon) {
+  scroll-padding-block: var(--ss-horizon);
+}
+
+.ss-horizon {
+  position: sticky;
+  display: block;
+  height: var(--ss-horizon);
+}
+
+.ss-horizon.top {
+  --to: to bottom;
+
+  top: 0;
+  margin-bottom: calc(-1 * var(--ss-horizon));
+}
+
+.ss-horizon.bottom {
+  --to: to top;
+
+  bottom: 0;
+  margin-top: calc(-1 * var(--ss-horizon));
+}
+
+@keyframes ss-dawn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes ss-dusk {
+  to {
+    opacity: 0;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .ss-horizon.top {
+    animation: ss-dawn linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 var(--ss-horizon);
+  }
+
+  .ss-horizon.bottom {
+    animation: ss-dusk linear both;
+    animation-timeline: scroll(root);
+    animation-range: calc(100% - var(--ss-horizon)) 100%;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .ss-veil::before,
+  .ss-veil::after,
+  .ss-horizon {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .ss-video-toggle {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--ss-tooltip);
+  }
+}
+
+@media print {
+  .ss-horizon,
+  .ss-video-toggle {
+    display: none;
+  }
+}

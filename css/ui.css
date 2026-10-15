@@ -147,6 +147,7 @@ textarea.ss-input {
 }
 
 .ss-segment {
+  position: relative;
   display: inline-flex;
   padding: 2px;
   border: var(--ss-hairline) solid var(--ss-ui);
@@ -166,9 +167,38 @@ textarea.ss-input {
   cursor: pointer;
 }
 
-.ss-segment button[aria-pressed='true'] {
+.ss-segment button:is([aria-pressed='true'], [aria-selected='true']) {
   background: var(--ss-ui-3);
   color: var(--ss-tx);
+}
+
+.ss-segment.measured {
+  isolation: isolate;
+}
+
+.ss-segment.measured::before {
+  position: absolute;
+  z-index: -1;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  width: var(--w);
+  border-radius: var(--ss-radius-full);
+  background: var(--ss-ui-3);
+  content: '';
+  translate: var(--x) 0;
+}
+
+.ss-segment.measured button:is([aria-pressed='true'], [aria-selected='true']) {
+  background: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ss-segment.ready::before {
+    transition:
+      translate var(--ss-dur-small) var(--ss-ease-out),
+      width var(--ss-dur-small) var(--ss-ease-out);
+  }
 }
 
 .ss-card {

@@ -184,6 +184,8 @@
   --ss-focus-offset: 2px;
   --ss-icon-size: 1em;
   --ss-icon-stroke: 1.6;
+  --ss-veil: 64px;
+  --ss-horizon: 96px;
   --ss-z-bar: 30;
   --ss-z-popover: 50;
   --ss-z-sheet: 60;
@@ -254,6 +256,8 @@
   --ss-syntax-inserted: #86b300;
   --ss-syntax-deleted: #f51818;
   --ss-syntax-heading: #36a3d9;
+  --ss-media-gradient: radial-gradient(circle, #ffffff 0%, #efefef 100%);
+  --ss-frame: rgb(13 13 13 / 10%);
   --ss-shadow-card: 0 1px 2px rgb(13 13 13 / 4%), 0 1px 3px rgb(13 13 13 / 4%);
   --ss-shadow-pop: 0 4px 12px rgb(13 13 13 / 8%), 0 12px 32px rgb(13 13 13 / 10%);
   color-scheme: light;
@@ -325,6 +329,8 @@
     --ss-syntax-inserted: #b8cc52;
     --ss-syntax-deleted: #ff3333;
     --ss-syntax-heading: #36a3d9;
+    --ss-media-gradient: radial-gradient(circle, #161618 0%, #202020 100%);
+    --ss-frame: rgb(255 255 255 / 10%);
     --ss-shadow-card: 0 1px 2px rgb(0 0 0 / 40%);
     --ss-shadow-pop: 0 8px 24px rgb(0 0 0 / 45%), 0 2px 6px rgb(0 0 0 / 35%);
     color-scheme: dark;
@@ -396,6 +402,8 @@
   --ss-syntax-inserted: #b8cc52;
   --ss-syntax-deleted: #ff3333;
   --ss-syntax-heading: #36a3d9;
+  --ss-media-gradient: radial-gradient(circle, #161618 0%, #202020 100%);
+  --ss-frame: rgb(255 255 255 / 10%);
   --ss-shadow-card: 0 1px 2px rgb(0 0 0 / 40%);
   --ss-shadow-pop: 0 8px 24px rgb(0 0 0 / 45%), 0 2px 6px rgb(0 0 0 / 35%);
   color-scheme: dark;

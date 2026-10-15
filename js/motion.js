@@ -127,3 +127,29 @@ export function leave(el, { remove = false } = {}) {
     timer = setTimeout(done, settle(el) + 50);
   });
 }
+
+export function pill(segment) {
+  const measure = () => {
+    const on = segment.querySelector(':scope > :is([aria-pressed="true"], [aria-selected="true"])');
+    if (!on) return segment.classList.remove('measured');
+    segment.style.setProperty('--x', `${on.offsetLeft}px`);
+    segment.style.setProperty('--w', `${on.offsetWidth}px`);
+    segment.classList.add('measured');
+  };
+  measure();
+  requestAnimationFrame(() => requestAnimationFrame(() => segment.classList.add('ready')));
+  const moved = new MutationObserver(measure);
+  moved.observe(segment, { subtree: true, attributeFilter: ['aria-pressed', 'aria-selected'] });
+  const resized = new ResizeObserver(measure);
+  resized.observe(segment);
+  return () => {
+    moved.disconnect();
+    resized.disconnect();
+    segment.classList.remove('measured', 'ready');
+  };
+}
+
+export async function through(change) {
+  if (!document.startViewTransition) return change();
+  await document.startViewTransition(change).finished.catch(() => {});
+}

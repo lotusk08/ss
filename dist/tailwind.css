@@ -149,6 +149,7 @@
   --color-syntax-inserted: var(--ss-syntax-inserted);
   --color-syntax-deleted: var(--ss-syntax-deleted);
   --color-syntax-heading: var(--ss-syntax-heading);
+  --color-frame: var(--ss-frame);
   --font-sans: var(--ss-font-sans);
   --font-serif: var(--ss-font-serif);
   --font-mono: var(--ss-font-mono);
