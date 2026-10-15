@@ -221,8 +221,12 @@
 }
 
 .ss-video {
-  position: relative;
+  display: grid;
   margin-inline: 0;
+}
+
+.ss-video > :is(video, .ss-video-toggle) {
+  grid-area: 1 / 1;
 }
 
 .ss-video video {
@@ -234,10 +238,10 @@
 }
 
 .ss-video-toggle {
-  position: absolute;
-  bottom: var(--ss-space-4);
-  left: var(--ss-space-4);
   display: grid;
+  align-self: end;
+  justify-self: start;
+  margin: var(--ss-space-4);
   place-items: center;
   width: 36px;
   height: 36px;

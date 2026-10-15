@@ -202,8 +202,12 @@ Nothing here was invented; each value is one the projects already ship.
   them; why's `share` is another glyph than the site's and is left out), then
   Font Awesome Free 6.7.2 itself for the classes think uses that no product
   had as a path: `eye`, `file-export`, `file-image` and `file-pdf` (why's `pdf`),
-  and `play`, `pause` (the video's button) and `scale-balanced` (Things, in
-  the site's footer).
+  and `play` and `pause` (the video's button). `io` and `things` are the
+  apps' own marks, their favicons in one colour: IO's `i` and `o`, and
+  Things' "T." from its `static/favicon.svg`, framed as `io` is. The other
+  apps in the site's footer keep a Font Awesome icon: write's favicon is the
+  blog's, Think Why? and Think tree share one, Page carries tldraw's and
+  EPUB fix has none.
 - Hero, rhythm and motion: from claude-skill-awwwards (MIT), where it did
   not contradict the products. Its easing and duration scale were already
   IO's; it added `--ss-display-0`, the hero leading and tracking, the body and
