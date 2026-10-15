@@ -208,8 +208,10 @@ Nothing here was invented; each value is one the projects already ship.
   and the tree Think Why? and Think tree share as their favicon, `why` the
   tree alone and `think` the tree in a rounded square drawn as half a pixel
   at any size (`vector-effect: non-scaling-stroke`; one device pixel on a 2x
-  screen, a fainter line on a 1x one), set 8 units in so the line is not cut
-  at 16px. The tree is written once (`tree` in `solid.js`), the
+  screen, a fainter line on a 1x one). They are sized by Font Awesome's own
+  rule, measured on its icons: a rounded square is 88% of the em, as the
+  `square-*` icons are, and a disc fills it, so the tree, a lace of a disc,
+  is 95%; every mark is centred in its em, `io`, which sat 5% high, too. The tree is written once (`tree` in `solid.js`), the
   favicon's path at 0.1 unit through svgo; at whole units its leaves bent.
   The other apps in the site's footer keep a Font Awesome icon: write's
   favicon is the blog's, Page carries tldraw's and EPUB fix has none.
