@@ -206,9 +206,10 @@ Nothing here was invented; each value is one the projects already ship.
   `think` are the apps' own marks, their favicons in one colour: IO's `i`
   and `o`; Things' "T." from its `static/favicon.svg`, framed as `io` is;
   and the tree Think Why? and Think tree share as their favicon, `why` the
-  tree alone and `think` the tree in a rounded square drawn as one pixel at
-  any size (`vector-effect: non-scaling-stroke`), set 8 units in so the line
-  is not cut at 16px. The tree is written once (`tree` in `solid.js`), the
+  tree alone and `think` the tree in a rounded square drawn as half a pixel
+  at any size (`vector-effect: non-scaling-stroke`; one device pixel on a 2x
+  screen, a fainter line on a 1x one), set 8 units in so the line is not cut
+  at 16px. The tree is written once (`tree` in `solid.js`), the
   favicon's path at 0.1 unit through svgo; at whole units its leaves bent.
   The other apps in the site's footer keep a Font Awesome icon: write's
   favicon is the blog's, Page carries tldraw's and EPUB fix has none.
