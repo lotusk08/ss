@@ -243,8 +243,8 @@ img {
 }
 
 .ss-gradient-title {
-  padding-inline-start: 0.1em;
-  margin-inline-start: -0.1em;
+  padding: 0.25em 0.1em 0.15em;
+  margin: -0.25em -0.1em -0.15em;
   background: var(--ss-title-gradient);
   -webkit-background-clip: text;
   background-clip: text;

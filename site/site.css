@@ -95,7 +95,7 @@ main {
 }
 
 .doc-head h1 {
-  margin: 0 0 0.75rem;
+  margin: -0.25em 0 calc(0.75rem - 0.15em);
   font-size: clamp(2.75rem, 1.6rem + 4.2vw, 4.75rem);
   line-height: 1.05;
 }
@@ -945,7 +945,9 @@ main {
   }
 
   .ss-footer .apps {
-    flex-wrap: wrap;
-    gap: 0.25rem 0.75rem;
+    flex: 1 1 100%;
+    justify-content: space-between;
+    gap: 0;
+    margin-inline: -0.5rem;
   }
 }

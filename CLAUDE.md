@@ -264,6 +264,12 @@ Nothing here was invented; each value is one the projects already ship.
   element is simply there. Load animations finish within a second. A scroll
   timeline ignores `animation-delay`, so `.ss-stagger` staggers by shifting
   `animation-range` with `--i` instead.
+- `.ss-gradient-title` is padded 0.25em above, 0.1em at the sides and 0.15em
+  below, and pulled back by as much, so nothing moves: `background-clip: text`
+  paints only inside the box, and at a 1.05 leading Domaine's descenders
+  reached 0.065em below it (the `p` and `y` of the title were cut), stacked
+  Vietnamese marks (`Ẩ`, `Ỷ`) 0.2em above, and the italic past its sides
+  where the box is as wide as the text (the social card's last `e`).
 - `.ss-mask` clips with `clip-path: inset()` and negative side insets, not
   `overflow: hidden`, which cut the overhang of Newsreader's italic.
 - `site/index.html` is the source of style.stevehoang.com. It holds
