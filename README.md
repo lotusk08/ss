@@ -428,7 +428,8 @@ falls back to Newsreader.
 
 Edit `src/palette.js` (colours, type, space, motion) or `src/icons/`, then
 `npm run build` and `npm test`. `dist/` is generated; the test fails when it is
-out of date.
+out of date. The rules for a change, each with its reason and a wrong and a right
+example, are in `.claude/skills/ss-update/`.
 
 ## Licence
 

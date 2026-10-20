@@ -229,6 +229,11 @@ Nothing here was invented; each value is one the projects already ship.
 
 ## Rules
 
+- `.claude/skills/ss-update` holds the rules for changing SS itself, one file
+  each (what, why, the wrong way and the right one), prioritised in its
+  `SKILL.md`. Apply them to every change and every review; a mistake that could
+  come back becomes a new rule there. This file stays the source of the facts:
+  a rule that restates one changes with it, in the same commit.
 - `skills/ss` is one skill: SS's rules merged with claude-skill-awwwards
   (MIT per its README, credited in `NOTICE.md`). `references/` holds its
   seven files unchanged; update them by copying upstream again. Where they
@@ -263,10 +268,16 @@ Nothing here was invented; each value is one the projects already ship.
   under `dist/icons/` are its output with the class and aria attributes taken
   off. The sprites leave stroke and fill to `css/icons.css`, so a `<use>` takes
   `--ss-icon-stroke` and the text colour.
-- UI Skills (MIT, credited in `skills/ss/NOTICE.md`), paco.me and shud.in
-  give values and rules where the products had none; they never override a
-  product. UI Skills' press scale (0.96) is left out: the blog's press is at
-  once and does not shrink. Its solid modal scrim is left out: why blurs the
+- A product supplies a value; outside references check it before it goes in,
+  since the owner and the agent are both sometimes wrong
+  (`.claude/skills/ss-update/rules/source-check-the-world.md`). They must be
+  the newest, the best known and the most widely used: MDN, web.dev Baseline,
+  Can I use, WCAG 2.2, Apple's HIG, Material 3, Primer, Geist, and the craft
+  sources SS credits, UI Skills (MIT, in `skills/ss/NOTICE.md`), paco.me and
+  shud.in. On taste the owner decides; on accessibility or browser support the
+  reference wins unless the owner decides otherwise. Decisions so far: UI
+  Skills' press scale (0.96) is left out, because the blog's press is at once
+  and does not shrink; its solid modal scrim is left out, because why blurs the
   page behind a dialog.
 - Nothing in `motion.css` starts hidden waiting for a script, but `.ss-move`,
   which is for what comes and goes (menus, sheets, dialogs, toasts) and is
